@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: quarto-dev/quarto-actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@main
         with:
-          version: latest  
+          version: latest 
       - name: Render Quarto Project
         run: dashboard.qmd
       - name: Deploy to GitHub Pages
