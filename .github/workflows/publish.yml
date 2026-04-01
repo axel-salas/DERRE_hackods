@@ -22,13 +22,13 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Jupyter dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install jupyter nbformat
+          pip install jupyter nbformat pandas matplotlib plotly  # agrega los que uses
 
       - name: Render Quarto Project
-        run: quarto render index.qmd --to html --output-dir _site
+        run: quarto render dashboard.qmd --to html --output-dir _site
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
