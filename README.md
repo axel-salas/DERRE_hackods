@@ -2,7 +2,9 @@
 
 ## Equipo DERRE - Integrantes
 | [Emilio Axel Salas Palacios] |
+
 | [Claudio Flores Gúzman] |
+
 | [Angel Noel Pérez Martínez] |
 
 ---
