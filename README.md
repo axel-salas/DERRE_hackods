@@ -23,9 +23,26 @@
 
 ## Descripción del proyecto (pregunta o problema central) (modulo C)
 
+Llenar de manera indistinta y despues dar formato 
+
+-Pregunta o problema central
+
+Plantear la pregunta de manera clara evitando ambiguedades e intentar plantear algo novedoso
+
+-Coherencia narrativa
+
+Explicar nuestra historia y ver como los datos le dan soporte tanto a la historia como a la seleccion del ODS
+
+-Potencial de impacto
+
+Explicar porque la historia se apega a un problema real y claro, evitando caer en generalizaciones teniendo claro el problema y lo que se puede hacer
+
+
 ---
 
 ## Selección y calidad de los datos (modulo B)
+
+Llenar de manera ordenadad adjuntando de manera ordenada links y demas, dar formato al final
 
 -Pertinencia (Los datos son coherentes con el ODS)
 
