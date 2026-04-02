@@ -1,5 +1,7 @@
-name: Render Quarto Project
-run: quarto render index.qmd --to dashboard --output-dir _site --execute
+-name: Render Quarto Project
+  run: quarto render index.qmd --to dashboard --output-dir _site --execute
+
+name: Publish Quarti Dasboard
 
 on:
   push:
