@@ -29,7 +29,7 @@ jobs:
 
       - name: Render Quarto Project
         working-directory: ./dashboard
-        run: quarto render index.qmd --to dashboard --output-dir _site
+        run: quarto render dashboard.qmd --to dashboard --output-dir _site
 
       - name: Add .nojekyll
         run: touch _site/.nojekyll
