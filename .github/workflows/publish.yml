@@ -32,7 +32,7 @@ jobs:
         run: quarto render dashboard.qmd --to dashboard --output-dir _site
 
       - name: Add .nojekyll
-        run: touch _site/.nojekyll
+        run: touch scripts/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
