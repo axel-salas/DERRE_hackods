@@ -1,4 +1,4 @@
---- 
+---
 title: "Tablero ODS"
 author: "DERRE"
 format: 
@@ -7,14 +7,14 @@ format:
     nav-buttons: [linkedin, twitter, github]
 ---
 ## Row {height=70%}
-
 ```{python}
+print("hola")
 ```
 
 ## Row {height=30%}
-
 ```{python}
+print("a")
 ```
-
 ```{python}
+print("b")
 ```
