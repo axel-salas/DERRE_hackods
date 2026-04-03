@@ -1,5 +1,5 @@
 # Metadatos de los datos de producción pesquera
-<!--
+
 ## Fuentes: 
 - Secretaría de Agricultura y Desarrollo Rural, Comisión Nacional de Acuacultura y Pesca, Anuario Estadístico de Acuacultura y Pesca Ediciones 2018 - 2023 CONAPESCA, México.
 - Secretaría de Agricultura y Desarrollo Rural, Comisión Nacional de Acuacultura y Pesca, Dirección General de Planeación, Programación y Evaluación, Abril, 2025.
