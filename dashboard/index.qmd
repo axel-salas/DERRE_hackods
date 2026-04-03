@@ -2,7 +2,8 @@
 title: "Tablero ODS"
 author: "DERRE"
 format: 
-  dashboard: true
+  dashboard: 
+    scrolling: true
 ---
 ## Row {height=70%}
 
