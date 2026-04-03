@@ -29,10 +29,10 @@ jobs:
 
       - name: Render Quarto Project
         working-directory: ./dashboard
-        run: quarto render dashboard.qmd --to dashboard --output-dir _site
+        run: quarto render
 
       - name: Add .nojekyll
-        run: touch scripts/.nojekyll
+        run: touch dashboard/_site/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
