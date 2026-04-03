@@ -6,7 +6,7 @@
 - Secretaría de Agricultura, Ganadería, Desarrollo Rural, Pesca y Alimentación, Comisión Nacional de Acuacultura y Pesca, Anuario Estadístico de Acuacultura y Pesca, Ediciones 2003 - 2017, CONAPESCA, México.
 
 - **URL**: http://dgeiawf.semarnat.gob.mx:8080/ibi_apps/WFServlet?IBIF_ex=D2_PESCA01_01&IBIC_user=c25&IBIC_pass=c25
-- **Fecha de descarga**: [02-04-2004]
+- **Fecha de descarga**: [02-04-2026]
 
 ## Archivo procesado
 
