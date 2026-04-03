@@ -11,11 +11,11 @@
 
 ## ODS seleccionados
 
--**[num ods] - [nombre del ods]**
+-**[ODS 9] - [Vida Submarina]**
   
   (porque se escogio)
 
--**[num ods] - [nombre del ods]**
+-**[ODS 9] - [Industria, Innovación e Infraestructura]**
   
   (porque se escogio)
 
@@ -42,7 +42,7 @@ Explicar porque la historia se apega a un problema real y claro, evitando caer e
 
 ## Selección y calidad de los datos (modulo B)
 
-Llenar de manera ordenadad adjuntando de manera ordenada links y demas, dar formato al final
+Llenar de manera ordenada adjuntando de manera ordenada links y demas, dar formato al final
 
 -Pertinencia (Los datos son coherentes con el ODS)
 
