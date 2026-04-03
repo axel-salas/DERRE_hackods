@@ -1,33 +1,34 @@
 
 # Metadatos de los datos
 
-## Fuente principal: []
-- **URL**: [enlace]
-- **Fecha de descarga**: [YYYY-MM-DD]
+## Fuentes:
+-Comisión Nacional de Áreas Naturales Protegidas, Dirección General de Conservación, Mayo, 2024.
+-Comisión Nacional de Áreas Naturales Protegidas, Dirección General de Operación Regional, Mayo, 2022.
+-Comisión Nacional de Áreas Naturales Protegidas, Área de Protección de Flora y Fauna Islas del Golfo de California, BCS, Septiembre, 2017.
 
-## Archivos procesados (en `processed/`)
+- **URL**: http://dgeiawf.semarnat.gob.mx:8080/ibi_apps/WFServlet?IBIF_ex=D3_BIODIV02_06&IBIC_user=dgeia_mce&IBIC_pass=dgeia_mce
+  
+- **Fecha de descarga**: [02-04-2026]
 
-### `indicadores_ods.csv`
-- **Descripción**: Indicadores clave para los ODS seleccionados, por entidad federativa y año.
+## Archivos procesados 
+
+### `.csv`
+- **Descripción**: Registro anual de la población de ballena gris en la región de Baja California (Laguna Ojo de Liebre y Laguna San Ignacio). Los datos incluyen conteos de ballenas adultas, madres con cría (ballenatos) y avistamientos totales por temporada. Las variaciones interanuales observadas pueden atribuirse a factores como cambios en las condiciones oceanográficas (por ejemplo, temperatura del agua y disponibilidad de alimento), fenómenos climáticos como El Niño, así como a presiones antropogénicas (tráfico marítimo, turismo, contaminación).
+
+La información proviene de monitoreos sistemáticos realizados durante la temporada de reproducción y migración. Originalmente, los registros se organizaban por temporadas (de finales de un año a abril del siguiente); sin embargo, para facilitar el análisis comparativo, los datos fueron ajustados y consolidados a un solo año calendario en el archivo procesado, ademas de tomar los datos de ambas lagunas y considerarlos en uno solo.
+
 - **Variables**:
-  - `año`: entero, rango 2010–2024.
-  - `entidad`: string, nombre del estado.
-  - `tasa_alfabetizacion`: float, porcentaje de población alfabetizada.
-  - `desercion_escolar`: float, porcentaje.
-  - `brecha_genero`: float, diferencia porcentual entre hombres y mujeres.
+  - `año`: entero, rango 1996–2024.
+  - `Población registrada (número de ballenas)`: entero
 - **Transformaciones aplicadas**:
-  - Se eliminaron registros con valores nulos.
-  - Se normalizaron los nombres de las entidades.
-  - Se agregaron promedios móviles para suavizar tendencias.
+  - Se ajusto el periodo de temporadas a año calendario.
+  - Se juntaron los valores de ambas lagunas en un solo valor
 
-## Archivos originales (en `raw/`)
+## Archivos originale
 
-### `educacion_raw.xlsx`
-- **Formato**: Excel, hoja "Datos"
-- **Observaciones**: Incluye datos desagregados por nivel educativo que no se usaron en el dashboard final. Se conserva por reproducibilidad.
+### `ballenas.xlsx`
+- **Formato**: Excel, hoja de indicadores, hoja de metadatos originales, hoja de fuentes.
+- **Observaciones**: Incluye datos por temporadas, asi como los datos separados por distintas lagunas.
 
 ## Notas adicionales
-- Todos los archivos procesados están codificados en UTF-8.
-- Para más detalles sobre el proceso de limpieza, ver scripts en `scripts/etl.py`.
-
-SEGUIR ESTRUCTURA EN EL COMENTARIO
+- Sin notas adicionales
