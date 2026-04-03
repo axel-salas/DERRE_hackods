@@ -12,7 +12,7 @@
 
 ## Archivos procesados 
 
-### `.csv`
+### `ballenas.csv`
 - **Descripción**: Registro anual de la población de ballena gris en la región de Baja California (Laguna Ojo de Liebre y Laguna San Ignacio). Los datos incluyen conteos de ballenas adultas, madres con cría (ballenatos) y avistamientos totales por temporada. Las variaciones interanuales observadas pueden atribuirse a factores como cambios en las condiciones oceanográficas (por ejemplo, temperatura del agua y disponibilidad de alimento), fenómenos climáticos como El Niño, así como a presiones antropogénicas (tráfico marítimo, turismo, contaminación).
 
 La información proviene de monitoreos sistemáticos realizados durante la temporada de reproducción y migración. Originalmente, los registros se organizaban por temporadas (de finales de un año a abril del siguiente); sin embargo, para facilitar el análisis comparativo, los datos fueron ajustados y consolidados a un solo año calendario en el archivo procesado, ademas de tomar los datos de ambas lagunas y considerarlos en uno solo.
