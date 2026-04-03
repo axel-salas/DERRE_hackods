@@ -1,32 +1,33 @@
 # Metadatos de los datos de producción pesquera
 
 ## Fuentes: 
-- Secretaría de Agricultura y Desarrollo Rural, Comisión Nacional de Acuacultura y Pesca, Anuario Estadístico de Acuacultura y Pesca Ediciones 2018 - 2023 CONAPESCA, México.
-- Secretaría de Agricultura y Desarrollo Rural, Comisión Nacional de Acuacultura y Pesca, Dirección General de Planeación, Programación y Evaluación, Abril, 2025.
-- Secretaría de Agricultura, Ganadería, Desarrollo Rural, Pesca y Alimentación, Comisión Nacional de Acuacultura y Pesca, Anuario Estadístico de Acuacultura y Pesca, Ediciones 2003 - 2017, CONAPESCA, México.
+- Comisión Nacional de Áreas Naturales Protegidas, Dirección General de Conservación, Mayo, 2024.
+- Comisión Nacional de Áreas Naturales Protegidas, Dirección General de Operación Regional, Mayo, 2022.
+- Comisión Nacional de Áreas Naturales Protegidas, Área de Protección de Flora y Fauna Islas del Golfo de California, BCS, Septiembre, 2017.
+- Secretaría de Medio Ambiente y Recursos Naturales, Dirección General de Estadística e Información Ambiental, con base en: CONANP, "Monitoreo del pelícano pardo (Pelecanus occidentalis californicus) como especie centinela", Noviembre 2012. CONANP, Dirección de Especies Prioritarias para la Conservación, Mayo, 2016. CONANP, Área de Protección de Flora y Fauna Islas del Golfo de California, BCS, Septiembre, 2017. CONANP, Dirección General de Operación Regional, Mayo, 2020.
 
-- **URL**: http://dgeiawf.semarnat.gob.mx:8080/ibi_apps/WFServlet?IBIF_ex=D2_PESCA01_01&IBIC_user=c25&IBIC_pass=c25
-- **Fecha de descarga**: [02-04-2004]
+- **URL**: http://dgeiawf.semarnat.gob.mx:8080/ibi_apps/WFServlet?IBIF_ex=D3_BIODIV02_19&IBIC_user=c25&IBIC_pass=c25
+- **Fecha de descarga**: [02-04-2026]
 
 ## Archivo procesado
 
-### `produccion_pesquera.csv`
-- **Descripción**: Volúmenes de captura y de producción de acuacultura. Las diferencias observadas entre años consecutivos en los datos se deben a la variabilidad natural de las poblaciones de especies pesqueras (productividad natural), así como a la ocasionada por los cambios en las condiciones oceánicas (régimen de temperatura, fenómenos meteorológicos como El Niño), y a los niveles particulares de explotación a que sea sometida una pesquería en un año o periodo en particular, por lo cual se afectan los volúmenes de captura de años posteriores. Los datos proceden de los anuarios que se indican en la fuente y de la Comisión Nacional de Acuacultura y Pesca (Conapesca) para el caso de la información más reciente que aún no se integra al anuario correspondiente; una vez que se publica éste dicha información se revisa de acuerdo con él.
-Debe señalarse que en materia del destino de la producción, a partir del Anuario 2021 se presentan en consumo humano directo datos de pesquerías que normalmente se presentaban en anuarios previos solo en consumo humano indirecto o en uso industrial; es el caso de las pesquerías algas, fauna de acompañamiento y peces de ornato. En el Anuario 2022, por ejemplo, se presenta producción de fauna de acompañamiento destinada al consumo humano directo y al indirecto.
+### `pelicanos.csv`
+- **Descripción**: La información procede de censos de nidos activos en colonias del pelicano pardo (Pelecanus occidentalis californicus) ubicadas en la región de las Grandes Islas y norte del Golfo de California, pertenecientes al Área de Protección de Flora y Fauna (APFF) «Islas del Golfo de California». En el monitoreo de esta especie han participado colaboradores del Instituto Nacional de Ecología, de la Universidad Autónoma de Baja California Sur y de la Universidad de California y de las ANP siguientes: Área de Protección de Flora y Fauna «Islas del Golfo de California», el Parque Nacional «Zona Marina Archipiélago de San Lorenzo», la Reserva de la Biosfera «Bahía de los Ángeles y Canales de Ballenas y Salsipuedes» y del Parque Nacional «Zona Marina Archipiélago de Espirítu Santo».
+Los monitoreos anuales en las islas Peruano, Enmedio y San Pedro Nolasco, en la APFF «Islas del Golfo de California», son realizados por el personal de la ANP.
+El pelicano pardo es una especie indicadora del estado del ecosistema marino, por ser una especie depredadora que depende en gran medida de la productividad de pelágicos menores, grupo de peces que reflejan la productividad primaria del ecosistema marino del Golfo de California. Estas características permiten que, mediante el monitoreo de la condición de salud y censos de su población, sea posible detectar y prever los riesgos directos sobre esta especie y de forma indirecta determinar riesgos y cambios en el ecosistema marino del ANP.
 - **Variables**:
-  - `año`: entero, rango 1986–2024.
-  - `Producción pesquera en Baja California (Sur y norte) (toneladas)`: entero
+  - `año`: entero, rango 1999–2023.
+  - `Estimación de los nidos activos del Pelícano pardo de California en archipiélagos del Área de Protección de Flora y Fauna Islas del Golfo de Baja California
+(Número)`: entero
 - **Transformaciones aplicadas**:
   - Se eliminó la información de todos los estados distintos a Baja California y Baja California Sur
-  - Se sumó la cantidad de toneladas en Baja California y Baja California Sur.
+  - Se sumó la cantidad de nidos activos de las 4 primeras islas; Isla San Luis Archipiélago Las Encantadas, Isla Ángel de la Guarda Archipiélago Ángel de la Guarda, Isla Piojo Archipiélago Bahía de los Ángeles, Islas Las Ánimas San Lorenzo Archipiélago San Lorenzo. Esto, para tener solo dos variables; el año y la cantidad de nidos activos. 
 
 ## Archivo original
 
-### `produccion_pesquera_original.xlsx`
+### `pelicanos_original.xlsx`
 - **Formato**: Excel, hoja de indicadores, hoja de metadatos originales, hoja de fuentes.
-- **Observaciones**: Incluye datos de otras entidades federativas, 
+- **Observaciones**: Incluye datos de otras entidades federativas, y más información acerca de otras islas que no se incluyeron en el dataset procesado.  
 
 ## Notas adicionales
 - Sin notas adicionales
-
-
