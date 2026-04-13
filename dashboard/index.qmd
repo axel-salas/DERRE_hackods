@@ -194,12 +194,10 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 ## 
 
 ```{ojs}
-// Selector
 viewof opcionGrafica = Inputs.radio(
   ["Gráfica 1: Tendencia", "Gráfica 2: Estacionalidad", "Gráfica 3: Correlación"],
   { label: "📌 Selecciona la gráfica", value: "Gráfica 1: Tendencia" }
 )
-// Datos
 datos = {
   tendencia: [
     { año: 2010, valor: 15.2 },
@@ -236,7 +234,6 @@ datos = {
     { ph: 8.12, temp: 14.5 }
   ]
 }
-// Gráfica dinámica
 graficaActiva = {
   if (opcionGrafica.includes("Tendencia")) {
     return Plot.plot({
@@ -250,7 +247,7 @@ graficaActiva = {
     });
   } else if (opcionGrafica.includes("Estacionalidad")) {
     return Plot.plot({
-      title: "Patrón estacional del pH oceánico",
+      title: "Patrón estacional del pH",
       x: { label: "Mes" },
       y: { label: "pH", grid: true },
       marks: [
@@ -270,13 +267,12 @@ graficaActiva = {
   }
 }
 graficaActiva
-// Texto dinámico (solo datos, no HTML)
 contenido = {
   if (opcionGrafica.includes("Tendencia")) {
     return {
       titulo: "📈 Evolución de la temperatura superficial",
       descripcion: "Incremento gradual de la temperatura en la última década.",
-      vars: ["Año", "Temperatura (°C)"],
+      vars: "Año, Temperatura (°C)",
       fuente: "NOAA OISST v2.1",
       hallazgo: "Aumento de +0.21°C por década."
     };
@@ -284,7 +280,7 @@ contenido = {
     return {
       titulo: "📊 Patrón estacional del pH",
       descripcion: "Variación mensual del pH oceánico.",
-      vars: ["Mes", "pH"],
+      vars: "Mes, pH",
       fuente: "SOCAT v2023",
       hallazgo: "Disminución de 0.05 unidades en verano."
     };
@@ -292,8 +288,8 @@ contenido = {
     return {
       titulo: "🔵 Relación pH vs Temperatura",
       descripcion: "Relación inversa entre temperatura y pH.",
-      vars: ["pH", "Temperatura (°C)"],
-      fuente: "Argo + SOCAT",
+      vars: "pH, Temperatura (°C)",
+      fuente: "Datos Argo + SOCAT",
       hallazgo: "Correlación negativa (r = -0.72)."
     };
   }
@@ -304,12 +300,13 @@ contenido.titulo
 
 
 ::: {.callout-note}
+
 ```{ojs}
 contenido.descripcion
 
 Variables utilizadas:
 
-contenido.vars.join(", ")
+contenido.vars
 
 Fuente:
 
@@ -325,6 +322,7 @@ contenido.hallazgo
 :::
 
 :::
+
 ## 📐 Descripción del modelo
 
 <!--
