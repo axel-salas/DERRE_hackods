@@ -189,128 +189,142 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 
 # 📈 Análisis Exploratorio {.seccion}
 
-## Column {width="65%"}
+::: {layout-ncol=2}
 
-::: {.panel-tabset .tabset-ocean}
+## 
 
-### 📉 [Nombre Gráfica 1]
+```{ojs}
+// Selector
+viewof opcionGrafica = Inputs.radio(
+  ["Gráfica 1: Tendencia", "Gráfica 2: Estacionalidad", "Gráfica 3: Correlación"],
+  { label: "📌 Selecciona la gráfica", value: "Gráfica 1: Tendencia" }
+)
+// Datos
+datos = {
+  tendencia: [
+    { año: 2010, valor: 15.2 },
+    { año: 2012, valor: 15.5 },
+    { año: 2014, valor: 15.9 },
+    { año: 2016, valor: 16.3 },
+    { año: 2018, valor: 16.8 },
+    { año: 2020, valor: 17.1 },
+    { año: 2022, valor: 17.4 }
+  ],
+  estacional: [
+    { mes: "Ene", valor: 14.5 },
+    { mes: "Feb", valor: 14.7 },
+    { mes: "Mar", valor: 15.2 },
+    { mes: "Abr", valor: 16.0 },
+    { mes: "May", valor: 16.8 },
+    { mes: "Jun", valor: 17.5 },
+    { mes: "Jul", valor: 18.1 },
+    { mes: "Ago", valor: 18.3 },
+    { mes: "Sep", valor: 17.6 },
+    { mes: "Oct", valor: 16.4 },
+    { mes: "Nov", valor: 15.2 },
+    { mes: "Dic", valor: 14.6 }
+  ],
+  correlacion: [
+    { ph: 8.05, temp: 15.2 },
+    { ph: 8.10, temp: 14.8 },
+    { ph: 8.02, temp: 16.1 },
+    { ph: 7.98, temp: 16.9 },
+    { ph: 7.95, temp: 17.5 },
+    { ph: 8.08, temp: 15.0 },
+    { ph: 8.00, temp: 16.3 },
+    { ph: 7.93, temp: 18.0 },
+    { ph: 8.12, temp: 14.5 }
+  ]
+}
+// Gráfica dinámica
+graficaActiva = {
+  if (opcionGrafica.includes("Tendencia")) {
+    return Plot.plot({
+      title: "Evolución de la temperatura superficial",
+      x: { label: "Año" },
+      y: { label: "Temperatura (°C)", grid: true },
+      marks: [
+        Plot.line(datos.tendencia, { x: "año", y: "valor" }),
+        Plot.dot(datos.tendencia, { x: "año", y: "valor" })
+      ]
+    });
+  } else if (opcionGrafica.includes("Estacionalidad")) {
+    return Plot.plot({
+      title: "Patrón estacional del pH oceánico",
+      x: { label: "Mes" },
+      y: { label: "pH", grid: true },
+      marks: [
+        Plot.barY(datos.estacional, { x: "mes", y: "valor" })
+      ]
+    });
+  } else {
+    return Plot.plot({
+      title: "Relación pH vs Temperatura",
+      x: { label: "pH" },
+      y: { label: "Temperatura (°C)" },
+      marks: [
+        Plot.dot(datos.correlacion, { x: "ph", y: "temp" }),
+        Plot.linearRegressionY(datos.correlacion, { x: "ph", y: "temp" })
+      ]
+    });
+  }
+}
+graficaActiva
+// Texto dinámico (solo datos, no HTML)
+contenido = {
+  if (opcionGrafica.includes("Tendencia")) {
+    return {
+      titulo: "📈 Evolución de la temperatura superficial",
+      descripcion: "Incremento gradual de la temperatura en la última década.",
+      vars: ["Año", "Temperatura (°C)"],
+      fuente: "NOAA OISST v2.1",
+      hallazgo: "Aumento de +0.21°C por década."
+    };
+  } else if (opcionGrafica.includes("Estacionalidad")) {
+    return {
+      titulo: "📊 Patrón estacional del pH",
+      descripcion: "Variación mensual del pH oceánico.",
+      vars: ["Mes", "pH"],
+      fuente: "SOCAT v2023",
+      hallazgo: "Disminución de 0.05 unidades en verano."
+    };
+  } else {
+    return {
+      titulo: "🔵 Relación pH vs Temperatura",
+      descripcion: "Relación inversa entre temperatura y pH.",
+      vars: ["pH", "Temperatura (°C)"],
+      fuente: "Argo + SOCAT",
+      hallazgo: "Correlación negativa (r = -0.72)."
+    };
+  }
+}
+```{ojs}
 
-```{python}
-#| label: grafica-1
-fig_1.show()
-```
+contenido.titulo
 
-### 📊 [Nombre Gráfica 2]
 
-```{python}
-#| label: grafica-2
-fig_2.show()
-```
+::: {.callout-note}
+```{ojs}
+contenido.descripcion
 
-### 🔵 [Nombre Gráfica 3]
+Variables utilizadas:
 
-```{python}
-#| label: grafica-3
-fig_3.show()
-```
+contenido.vars.join(", ")
+
+Fuente:
+
+contenido.fuente
 
 :::
 
-## Column {width="35%"}
+::: {.callout-important}
 
-::: {.panel-tabset .tabset-ocean}
-
-### 📉 Gráfica 1
-
-::: {.callout-note appearance="minimal" icon=false}
-## [Nombre de la Gráfica 1]
-
-<!--
-Descripción de la Gráfica 1 y su relevancia para el ODS 14.
--->
-[Explica qué muestra la primera gráfica, la tendencia
-principal y su relación con el ODS 14.]
-
-**Variables utilizadas:**
-
-- **[Variable 1]:** [Descripción breve]
-- **[Variable 2]:** [Descripción breve]
-- **Fuente:** [Origen de los datos]
-:::
-
-::: {.callout-important appearance="minimal" icon=false}
-## 💡 Hallazgo clave
-
-[Escribe aquí el dato o tendencia más importante que
-revela esta gráfica.]
-:::
-
-### 📊 Gráfica 2
-
-::: {.callout-note appearance="minimal" icon=false}
-## [Nombre de la Gráfica 2]
-
-<!--
-Descripción de la Gráfica 2 y su relevancia para el ODS 14.
--->
-[Explica qué muestra la segunda gráfica, la tendencia
-principal y su relación con el ODS 14.]
-
-**Variables utilizadas:**
-
-- **[Variable 1]:** [Descripción breve]
-- **[Variable 2]:** [Descripción breve]
-- **Fuente:** [Origen de los datos]
-:::
-
-::: {.callout-important appearance="minimal" icon=false}
-## 💡 Hallazgo clave
-
-[Dato o tendencia más importante de la segunda gráfica.]
-:::
-
-### 🔵 Gráfica 3
-
-::: {.callout-note appearance="minimal" icon=false}
-## [Nombre de la Gráfica 3]
-
-<!--
-Descripción de la Gráfica 3 y su relevancia para el ODS 14.
--->
-[Explica qué muestra la tercera gráfica, la tendencia
-principal y su relación con el ODS 14.]
-
-**Variables utilizadas:**
-
-- **[Variable 1]:** [Descripción breve]
-- **[Variable 2]:** [Descripción breve]
-- **Fuente:** [Origen de los datos]
-:::
-
-::: {.callout-important appearance="minimal" icon=false}
-## 💡 Hallazgo clave
-
-[Dato o tendencia más importante de la tercera gráfica.]
-:::
+💡 Hallazgo clave
+contenido.hallazgo
 
 :::
 
-# 🤖 Modelo Predictivo {.seccion}
-
-## Column {width="60%"}
-
-::: {.callout-tip appearance="minimal" icon=false}
-## 🤖 [Nombre de tu Modelo Predictivo]
 :::
-
-```{python}
-#| label: modelo-predictivo
-fig_modelo.show()
-```
-
-## Column {width="40%"}
-
-::: {.callout-note appearance="minimal" icon=false}
 ## 📐 Descripción del modelo
 
 <!--
