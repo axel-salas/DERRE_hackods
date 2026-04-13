@@ -194,10 +194,13 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 ## 
 
 ```{ojs}
+// ===== INPUT =====
 viewof opcionGrafica = Inputs.radio(
-  ["Gráfica 1: Tendencia", "Gráfica 2: Estacionalidad", "Gráfica 3: Correlación"],
-  { label: "📌 Selecciona la gráfica", value: "Gráfica 1: Tendencia" }
+  ["Tendencia", "Estacionalidad", "Correlación"],
+  { label: "📌 Selecciona la gráfica", value: "Tendencia" }
 )
+
+// ===== DATOS =====
 datos = {
   tendencia: [
     { año: 2010, valor: 15.2 },
@@ -234,31 +237,27 @@ datos = {
     { ph: 8.12, temp: 14.5 }
   ]
 }
+
+// ===== GRÁFICA =====
 graficaActiva = {
-  if (opcionGrafica.includes("Tendencia")) {
+  if (opcionGrafica === "Tendencia") {
     return Plot.plot({
-      title: "Evolución de la temperatura superficial",
-      x: { label: "Año" },
-      y: { label: "Temperatura (°C)", grid: true },
+      title: "Temperatura",
       marks: [
         Plot.line(datos.tendencia, { x: "año", y: "valor" }),
         Plot.dot(datos.tendencia, { x: "año", y: "valor" })
       ]
     });
-  } else if (opcionGrafica.includes("Estacionalidad")) {
+  } else if (opcionGrafica === "Estacionalidad") {
     return Plot.plot({
-      title: "Patrón estacional del pH",
-      x: { label: "Mes" },
-      y: { label: "pH", grid: true },
+      title: "pH mensual",
       marks: [
         Plot.barY(datos.estacional, { x: "mes", y: "valor" })
       ]
     });
   } else {
     return Plot.plot({
-      title: "Relación pH vs Temperatura",
-      x: { label: "pH" },
-      y: { label: "Temperatura (°C)" },
+      title: "pH vs Temp",
       marks: [
         Plot.dot(datos.correlacion, { x: "ph", y: "temp" }),
         Plot.linearRegressionY(datos.correlacion, { x: "ph", y: "temp" })
@@ -266,63 +265,40 @@ graficaActiva = {
     });
   }
 }
-graficaActiva
+
+// ===== TEXTO =====
 contenido = {
-  if (opcionGrafica.includes("Tendencia")) {
-    return {
-      titulo: "📈 Evolución de la temperatura superficial",
-      descripcion: "Incremento gradual de la temperatura en la última década.",
-      vars: "Año, Temperatura (°C)",
-      fuente: "NOAA OISST v2.1",
-      hallazgo: "Aumento de +0.21°C por década."
-    };
-  } else if (opcionGrafica.includes("Estacionalidad")) {
-    return {
-      titulo: "📊 Patrón estacional del pH",
-      descripcion: "Variación mensual del pH oceánico.",
-      vars: "Mes, pH",
-      fuente: "SOCAT v2023",
-      hallazgo: "Disminución de 0.05 unidades en verano."
-    };
+  if (opcionGrafica === "Tendencia") {
+    return ["📈 Temperatura", "Aumento sostenido", "+0.21°C"];
+  } else if (opcionGrafica === "Estacionalidad") {
+    return ["📊 pH", "Variación mensual", "-0.05"];
   } else {
-    return {
-      titulo: "🔵 Relación pH vs Temperatura",
-      descripcion: "Relación inversa entre temperatura y pH.",
-      vars: "pH, Temperatura (°C)",
-      fuente: "Datos Argo + SOCAT",
-      hallazgo: "Correlación negativa (r = -0.72)."
-    };
+    return ["🔵 Correlación", "Relación inversa", "r=-0.72"];
   }
 }
+
+// OUTPUT
+graficaActiva
 ```{ojs}
 
-contenido.titulo
+contenido[0]
 
 
 ::: {.callout-note}
 
 ```{ojs}
-contenido.descripcion
-
-Variables utilizadas:
-
-contenido.vars
-
-Fuente:
-
-contenido.fuente
+contenido[1]
 
 :::
 
 ::: {.callout-important}
 
-💡 Hallazgo clave
-contenido.hallazgo
+💡 Hallazgo
+contenido[2]
 
 :::
 
 :::
-
 ## 📐 Descripción del modelo
 
 <!--
