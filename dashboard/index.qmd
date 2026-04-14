@@ -25,7 +25,7 @@ import pandas as pd
 import numpy as np
 
 
-# ── Paleta ODS 14 ─────────────────────────────
+# ── Paleta Dashboard ──────────
 C_DEEP  = "#03045E"
 C_MID   = "#0077B6"
 C_LIGHT = "#00B4D8"
@@ -36,25 +36,26 @@ C_TEAL  = "#2A9D8F"
 
 # ═══════════════════════════════════════════════
 #  CARGA DE DATOS
-#  TODO: reemplaza con tus datos reales
-#  Ejemplo: df = pd.read_csv("datos/mi_archivo.csv")
 # ═══════════════════════════════════════════════
+
+# BALLENAS
 np.random.seed(42)
 ballenas = pd.read_csv('../datos/ballenas/ballenas.csv').iloc[:28]
 ballenas.columns = ['año', 'poblacion registrada']
 ballenas['poblacion registrada']=ballenas['poblacion registrada'].str.replace(',', '').astype(float)
 ballenas['año']=pd.to_numeric(ballenas['año'])
 
-
+# PELICANOS
 pelicanos=pd.read_csv('../datos/pelicanos/pelicanos.csv').iloc[:22,:2]  
-
 pelicanos.columns = ['año', 'cantidad_nidos_pelicanos']
 pelicanos['año']=pelicanos['año'].astype(str)
 
+# PRODUCCION PESQUERA
 produccion_pesquera=pd.read_csv('../datos/produccion_pesquera/produccion_pesquera.csv',header=None,names=['año','toneladas_pescadas'])
 produccion_pesquera['toneladas_pescadas']=produccion_pesquera['toneladas_pescadas'].str.replace(',', '').astype(float)
 produccion_pesquera['año']=produccion_pesquera['año'].astype(float)
 
+# EMBARCACIONES
 embarcaciones=pd.read_csv('../datos/embarcaciones/total_embarcaciones.csv').iloc[:36]
 embarcaciones['total_embarcaciones']=embarcaciones['total_embarcaciones'].str.replace(',', '').astype(float)
 embarcaciones['año']=pd.to_numeric(embarcaciones['año'])   
@@ -77,55 +78,49 @@ _layout = dict(
 ## Column {width="100%"}
 
 ::: {.intro-hero}
-🌊 **ODS 14 · Vida Submarina**
+🌊 **ODS 14 · Vida Submarina (En el Golfo de California**
 
-# [TÍTULO PRINCIPAL DE TU INVESTIGACIÓN]
 :::
 
 ::: {.callout-note appearance="minimal" icon=false}
-## 📖 Contexto y motivación
+## Un mar que se está vaciando
 
 <!--
 ════════════════════════════════════════════════════
-STORYTELLING — PÁRRAFO DE APERTURA
-Empieza con un dato impactante o una pregunta poderosa.
-Ejemplo: "Cada minuto, el equivalente a un camión de
-basura llega a nuestros océanos..."
-════════════════════════════════════════════════════
+STORYTELLING
 -->
-[Escribe aquí tu párrafo de apertura y hook narrativo.
-Debe capturar la atención del lector y enmarcar el
-problema central desde la perspectiva del ODS 14.]
+Hay un momento en que los números dejan de ser estadísticas y se convierten en una advertencia.
+En Baja California, ese momento ya llegó.
+En menos de cuatro décadas, las embarcaciones pesqueras registradas en el litoral pasaron de poco más de 4,700 a casi 7,000 unidades, un crecimiento del 48% que no se detuvo ni en años de crisis climática ni en temporadas de colapso de capturas. Al mismo tiempo, la extracción pesquera alcanzó en 2024 su pico histórico: más de 550,000 toneladas registradas en un solo año, una cifra sin precedentes en los 40 años de registros hasta el dia de hoy.
+La pregunta ya no es si el ecosistema está bajo presión. La pregunta es si todavía es capaz de recuperarse.
+Para responderla, no basta con mirar las redes. Tenemos que ver el ecosistema completo.
+
 
 <!--
 ════════════════════════════════════════════════════
 CONTEXTO Y RELEVANCIA
-¿Qué región o ecosistema marino estudias?
-¿Qué indicadores o variables son clave?
-════════════════════════════════════════════════════
+
 -->
-[Desarrolla aquí el contexto de tu investigación:
-área geográfica, variables clave y conexión con las
-metas específicas del ODS 14.]
+El análisis que hicimos se centra en el ecosistema marino de Baja California, una región de alta relevancia ecológica caracterizada por su gran biodiversidad (900 especies de peces, el 90% endémicas, el 39% de los mamíferos marinos del mundo, 4500 especies de invertebrados marinos y mas de 181 expeacies de aves marinas) y su intensa actividad pesquera (67% del volumen total de la producción pesquera y acuícola nacional). Esta zona es particularmente sensible a la variabilidad climática, especialmente a fenómenos como El Niño, que afectan la disponibilidad de nutrientes, las cadenas tróficas y, en consecuencia, la dinámica de las especies marinas.
+Para entender estos procesos, se utilizan indicadores clave que reflejan tanto la salud del ecosistema como la presión humana. Entre ellos destacan los avistamientos de ballenas y la cantidad de nidos de pelícanos como proxies de biodiversidad, así como la producción pesquera y el número de embarcaciones como medidas del esfuerzo de explotación. Estas variables permiten analizar de manera integrada la interacción entre factores ambientales y actividades humanas.
 
 <!--
 ════════════════════════════════════════════════════
 OBJETIVO Y ESTRUCTURA DEL DASHBOARD
-Explica qué encontrará el lector.
-════════════════════════════════════════════════════
--->
-[Explica el objetivo del dashboard y cómo está
-estructurado. Menciona brevemente las secciones:
-análisis exploratorio, modelo predictivo y conclusiones.]
-:::
 
-| 📊 Variables | 📅 Período | 🗺️ Área geográfica | 🎯 Meta ODS 14 |
-|:---:|:---:|:---:|:---:|
-| [N variables] | [Años de estudio] | [Región / país] | Meta [X] |
+-->
+El objetivo de este dashboard es analizar la relación entre la biodiversidad marina y la actividad pesquera en la zona de estudio, teniendo en cuaenta tanto el comportamiento histórico como posibles escenarios futuros. Se permite identificar tendencias, detectar momentos clave asociados a fenómenos como El Niño y entender cómo la presión humana impacta el ecosistema.
+
+Está organizado en tres partes. Primero, un análisis exploratorio muestra la evolución histórica de variables como ballenas, pelícanos, producción pesquera y flota. Después, un modelo predictivo presenta escenarios futuros bajo distintas condiciones, comparando qué pasa si todo sigue igual frente a posibles estrategias de conservación. Finalmente, se resumen los hallazgos más importantes y sus implicaciones para la sostenibilidad.
+:::
 
 #  Análisis Exploratorio {.seccion}
 
 ## Column {width="70%"}
+
+::: {.intro-hero}
+Evolucion historica de nuestros indicadores.
+
 
 ::: {.panel-tabset .tabset-ocean}
 
@@ -301,7 +296,6 @@ def crear_fig_pelicanos(pelicanos):
         font=dict(color="#00a8cc", size=12)
     )
 
-    # Layout consistente
     fig.update_layout(
         shapes=shapes,
         title={
@@ -342,7 +336,6 @@ def crear_fig_pelicanos(pelicanos):
     return fig
 
 
-# En Quarto:
 display(crear_fig_pelicanos(pelicanos))
 ```
 
@@ -562,18 +555,20 @@ display(crear_fig_embarcaciones(embarcaciones))
 
 ## Column {width="30%"}
 
+::: {.intro-hero}
+Informacion indicadores 
+
 ::: {.panel-tabset .tabset-ocean}
 
-### 📉 Gráfica 1
+### Ballenas
 
 ::: {.callout-note appearance="minimal" icon=false}
-## [Nombre de la Gráfica 1]
+## Indicador pelágico de largo alcance
 
-<!--
-Descripción de la Gráfica 1 y su relevancia para el ODS 14.
--->
-[Explica qué muestra la primera gráfica, la tendencia
-principal y su relación con el ODS 14.]
+La ballena gris recorre hasta 20,000 kilómetros por temporada entre sus zonas de alimentación en el Ártico y sus criaderos en las lagunas de Baja California. Eso la convierte en algo extraordinario para la ciencia: un integrador biológico de condiciones oceánicas a escala continental.
+Cuando los avistamientos caen, no es porque las ballenas se hayan escondido. Es porque el sistema que las sostiene: zooplancton, peces pequeños, corrientes frías, está fallando.
+Los datos de monitoreo muestran una trayectoria perturbadora. Desde el máximo histórico de más de 3,000 individuos registrados en 2012, la población ha caído sistemáticamente. Para 2020, los avistamientos tocaron mínimos de apenas 1,000 individuos, una caída del 67% en ocho años. La ligera recuperación de 2023-2024 aún no alcanza la mitad del pico registrado.
+Los años sombreados en las gráficas corresponden a eventos El Niño; perturbaciones climáticas que calientan el Pacífico oriental y reducen la productividad marina. Algunos valles en la curva coinciden con estos eventos. Pero no todos. Y eso importa.
 
 **Variables utilizadas:**
 
@@ -589,16 +584,16 @@ principal y su relación con el ODS 14.]
 revela esta gráfica.]
 :::
 
-### 📊 Gráfica 2
+### Pelicanos
 
 ::: {.callout-note appearance="minimal" icon=false}
-## [Nombre de la Gráfica 2]
+## Indicador costero y de peces pequeños
 
-<!--
-Descripción de la Gráfica 2 y su relevancia para el ODS 14.
--->
-[Explica qué muestra la segunda gráfica, la tendencia
-principal y su relación con el ODS 14.]
+Si la ballena gris mira el océano desde lejos, el pelícano pardo lo mira desde arriba, literalmente. Se zambulle en picada para capturar sardinas, anchovetas y macarelas: exactamente las mismas especies que captura la flota pesquera industrial.
+La cantidad de nidos activos es el termómetro más sensible de su éxito reproductivo. Un pelícano que no come bien, no anida. Y una colonia que no anida, es una población que no se renueva.
+Los datos son contundentes. Desde un máximo de más de 30,000 nidos en 2011, la curva cae de forma casi vertical. Para 2014-2015, los registros muestran valores cercanos a cero nidos activos —un colapso reproductivo sin precedente en la serie histórica. La recuperación posterior es modesta y errática, oscilando entre 2,000 y 5,000 nidos, muy lejos de los niveles que esta especie necesita para mantener una población estable.
+El pelícano pardo compite con la flota pesquera por el mismo recurso. Donde la flota abunda, el pelícano escasea. Los datos no lo podrían mostrar de manera más clara.
+
 
 **Variables utilizadas:**
 
@@ -613,16 +608,14 @@ principal y su relación con el ODS 14.]
 [Dato o tendencia más importante de la segunda gráfica.]
 :::
 
-### 🔵 Gráfica 3
-
+### Embarcaciones y Produccion Pesquera
 ::: {.callout-note appearance="minimal" icon=false}
-## [Nombre de la Gráfica 3]
+## Captura y flota pesquera
 
-<!--
-Descripción de la Gráfica 3 y su relevancia para el ODS 14.
--->
-[Explica qué muestra la tercera gráfica, la tendencia
-principal y su relación con el ODS 14.]
+Mientras las poblaciones silvestres oscilan, dos curvas no han dejado de crecer.
+La flota pesquera registrada pasó de menos de 5,000 embarcaciones a mediados de los años ochenta a casi 7,000 en 2024, con un crecimiento acelerado particularmente notable desde 2018. No se trata de fluctuaciones estacionales: es una expansión estructural de la capacidad extractiva instalada en el litoral.
+La producción pesquera registrada siguió una trayectoria similar, con años de alta variabilidad pero una tendencia clara al alza desde 2015. El pico de 2024 (más de 550,000 toneladas) ocurrió precisamente cuando los indicadores biológicos de ballenas y pelícanos mostraban sus valores más bajos de la última década.
+Esta es la paradoja central: a mayor extracción, menor biomasa silvestre observable. Y sin embargo, la flota sigue creciendo, cayendo en el borde de la sobreexplotación del ecosistema.
 
 **Variables utilizadas:**
 
@@ -639,12 +632,13 @@ principal y su relación con el ODS 14.]
 
 :::
 
-# 🤖 Modelo Predictivo {.seccion}
+#  Modelo Predictivo {.seccion}
 
 ## Column {width="60%"}
 
 ::: {.callout-tip appearance="minimal" icon=false}
-## 🤖 [Nombre de tu Modelo Predictivo]
+## Cuando la ecología se vuelve matemática
+
 
 ```{python}
 #| cache: true
@@ -992,97 +986,63 @@ fig_H.show()
 ## Column {width="40%"}
 
 ::: {.callout-note appearance="minimal" icon=false}
-## 📐 Descripción del modelo
+##  Descripción del modelo
+Para entender no solo qué está pasando, sino cuánto puede resistir el ecosistema, usamos un modelo dinámico basado en Lotka-Volterra y Ricker, adaptado a este caso.
 
-<!--
-════════════════════════════════════════════════════
-Explica el tipo de modelo (regresión, Random Forest,
-ARIMA, red neuronal, etc.), su fundamentación teórica
-y por qué fue elegido para esta investigación.
-════════════════════════════════════════════════════
--->
-[Describe aquí el tipo de modelo estadístico o de
-machine learning que utilizaste. Explica su lógica,
-supuestos y por qué es adecuado para tus datos y para
-el ODS 14.]
+Definimos dos variables:
 
-**Variables del modelo:**
+- **H(t): biodiversidad marina** (salud del ecosistema).
+- **P(t): presión pesquera** (impacto humano).
 
-- **Variable dependiente (Y):** [Lo que predice el modelo]
-- **Variables independientes (X):** [Lista de predictores]
-- **Período de entrenamiento:** [Rango de datos usado]
+Ambas siguen un crecimiento con límite natural. Sin embargo:
+
+La pesca crece de forma casi independiente.
+La biodiversidad disminuye conforme aumenta la presión pesquera.
+
+El modelo describe esta interacción y añade ruido para capturar variaciones climáticas y de datos.
+
+Aunque el ajuste histórico no es perfecto (como es común en sistemas ecológicos), el objetivo no es predecir exactamente, sino entender tendencias, riesgos y posibles escenarios futuros. Por eso, los resultados se muestran con incertidumbre incluida.
 :::
 
 ::: {.callout-note appearance="minimal" icon=false}
-## 📊 Métricas de desempeño
+##  Parte Interactiva  (CAMBIAR NOMBRE POR ALGO MENOS OBVIO)
+El modelo nos permite hacer algo que los datos históricos solos no pueden: explorar escenarios de intervención. Los sliders a continuación te permiten ajustar dos parámetros de política pública y un horizonte temporal.
+**¿Qué puedes controlar?**
+- **Factor de reducción de la presión pesquera (a):** Simula regulaciones que limiten la captura total permitida: vedas, cuotas, zonas de exclusión. Un valor del 30% significa que la presión baja a una tercera parte de su nivel actual.
 
-| Métrica | Valor |
-|:--------|------:|
-| R² / Accuracy | [0.XX] |
-| RMSE / MAE | [0.XX] |
-| [Otra métrica] | [XX %] |
+
+- **Factor de reducción del crecimiento de la flota (f):** Simula políticas que frenen la expansión de embarcaciones: moratorias de registro, retiro de permisos, incentivos de reconversión. Un valor del 30% significa que la flota deja de crecer y empieza a contraerse.
+
+
+- **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
 
 :::
 
-::: {.callout-note appearance="minimal" icon=false}
-## 🔮 Interpretación de resultados
-
-<!--
-════════════════════════════════════════════════════
-Explica qué predicen los resultados y qué implican
-para el ODS 14 y la toma de decisiones.
-════════════════════════════════════════════════════
--->
-[Interpreta los resultados. ¿Qué proyecta el modelo
-hacia el futuro? ¿Qué factores son más influyentes?
-¿Cuáles son las implicaciones para la conservación
-marina y el ODS 14?]
-:::
-
-::: {.callout-important appearance="minimal" icon=false}
-## 🎯 Proyección principal
-
-[Escribe aquí la predicción o hallazgo más importante
-de tu modelo.]
-:::
-
-# 🏁 Conclusiones {.seccion}
+# Escenarios a futuro {.seccion}
 
 ## Column {width="55%"}
-
 
 
 ## Column {width="45%"}
 
 ::: {.callout-note appearance="minimal" icon=false}
-## 01 — [Conclusión 1]
+## 01 — [Escenario 1 **(Escenario inercial)**]
 
-<!--
-Primer hallazgo principal de tu investigación.
-Conecta con el análisis exploratorio.
--->
-[Describe aquí tu primera conclusión. Conecta con los
-datos que mostraste en el análisis exploratorio.]
+Sin intervención, el índice H continúa su declive hacia valores cercanos a cero en el horizonte 2035-2040. La flota sigue creciendo por inercia económica. Las capturas se mantienen artificialmente altas mientras quedan recursos, luego colapsan. Este es el escenario del punto de no retorno.
+
 :::
 
 ::: {.callout-note appearance="minimal" icon=false}
-## 02 — [Conclusión 2]
+## 02 — [Escenario 2 **(Escenario moderado)**]
 
-<!--
-Segundo hallazgo. Puede relacionarse con el modelo.
--->
-[Describe aquí tu segunda conclusión. Puede relacionarse
-con los resultados del modelo predictivo.]
+Una reducción del 50-60% en presión pesquera y crecimiento de flota, iniciada antes de 2030, permite que H se estabilice en torno a valores bajos pero positivos. El ecosistema no se recupera a sus niveles históricos, pero deja de colapsar. Es el escenario de la gestión del daño.
 :::
 
 ::: {.callout-note appearance="minimal" icon=false}
-## 03 — [Conclusión 3]
+## 03 — [Escenario 3 **(Escenario de conservacion activa)**]
 
-<!--
-Tercer hallazgo: implicaciones para el ODS 14.
--->
-[Describe las implicaciones para el ODS 14 y para la
-conservación de los ecosistemas marinos.]
+Escenario de conservación activa: Reducciones del 70-90% en ambos parámetros, iniciadas cuanto antes, producen una trayectoria de recuperación lenta pero sostenida. H muestra una tendencia positiva hacia 2040. Este es el único escenario en que la respuesta a la pregunta inicial es: sí, puede recuperarse.
+
 :::
 
 ::: {.callout-warning appearance="minimal" icon=false}
