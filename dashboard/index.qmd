@@ -253,31 +253,6 @@ def crear_fig(ballenas):
         font=dict(color="#00a8cc", size=12)
     )
 
-    fig.update_layout(
-        shapes=shapes,
-        title={
-            'text': "<b>Monitoreo de Ballenas en Baja California</b><br><span style='font-size:14px; color:gray;'>Variabilidad poblacional y salud del ecosistema</span>",
-            'y':0.96, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'
-        },
-        xaxis_title="Temporada (Año)",
-        yaxis_title="Individuos Registrados",
-        template="plotly_white",
-        hovermode="x unified",
-        font=dict(family="Arial", size=12, color="#2c3e50"),
-
-        autosize=True,
-        margin=dict(l=60, r=20, t=110, b=80),
-
-        legend=dict(
-            orientation="h",
-            y=-0.25,
-            x=0.5,
-            xanchor="center"
-        ),
-
-        height=550
-    )
-
     fig.update_xaxes(
         tickformat=".0f",
         tickangle=-45,
