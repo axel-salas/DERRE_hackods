@@ -259,18 +259,11 @@ fig.show()
 ```
 
 ### 📊 [Nombre Gráfica 2]
-
-```{python}
-#| label: grafica-2
-fig_2.show()
-```
-
+<!--
+poner codigo como el de arriba en ambas una vez esten las graficas
+-->
 ### 🔵 [Nombre Gráfica 3]
 
-```{python}
-#| label: grafica-3
-fig_3.show()
-```
 
 :::
 
@@ -361,10 +354,7 @@ principal y su relación con el ODS 14.]
 ## 🤖 [Nombre de tu Modelo Predictivo]
 :::
 
-```{python}
-#| label: modelo-predictivo
-fig_modelo.show()
-```
+
 
 ## Column {width="40%"}
 
@@ -427,10 +417,7 @@ de tu modelo.]
 
 ## Column {width="55%"}
 
-```{python}
-#| label: grafica-conclusiones
-fig_conclu.show()
-```
+
 
 ## Column {width="45%"}
 
