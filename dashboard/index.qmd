@@ -36,12 +36,10 @@ C_TEAL  = "#2A9D8F"
 #  Ejemplo: df = pd.read_csv("datos/mi_archivo.csv")
 # ═══════════════════════════════════════════════
 np.random.seed(42)
-df = pd.DataFrame({
-    "año":       list(range(2000, 2024)),
-    "variable1": np.random.uniform(40, 90,  24),
-    "variable2": np.random.uniform(20, 70,  24),
-    "variable3": np.cumsum(np.random.randn(24)) + 50,
-})
+ballenas=pd.read_csv('datos/ballenas/ballenas.csv').iloc[:28]  
+ballenas.columns = ['año', 'poblacion registrada']
+ballenas['poblacion registrada']=ballenas['poblacion registrada'].str.replace(',', '').astype(float)
+ballenas['año']=pd.to_numeric(ballenas['año'])
 
 # ── Layout base para todas las figuras ────────
 _layout = dict(
@@ -57,13 +55,71 @@ _layout = dict(
 #  GRÁFICA 1
 #  TODO: pega aquí el código de tu primera figura
 # ═══════════════════════════════════════════════
-fig_1 = px.line(
-    df, x="año", y="variable1",
-    title="[Nombre de tu Gráfica 1]",
-    labels={"año": "[Eje X]", "variable1": "[Eje Y]"},
-    color_discrete_sequence=[C_MID],
+
+el_nino_periods = [
+    (2002, 2003), (2004, 2005), (2006, 2007), (2009, 2010), (2014, 2016),(2018, 2019)
+]
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=[None], y=[None],
+    mode='markers',
+    marker=dict(symbol="square", size=15, color="rgba(173, 216, 230, 0.2)"), 
+    name='Fenómeno de El Niño',
+    showlegend=True
+))
+
+fig.add_trace(go.Scatter(
+    x=ballenas['año'], 
+    y=ballenas['poblacion registrada'],
+    mode='lines+markers',
+    name='Avistamientos',
+    line=dict(color='#005b96', width=3), 
+    marker=dict(size=9, color='#00a8cc', symbol='circle'), 
+    hovertemplate="<b>Año:</b> %{x}<br>" +
+                  "<b>Individuos:</b> %{y}<br>" +
+                  "<extra></extra>"
+))
+
+for i, (start, end) in enumerate(el_nino_periods):  
+    fig.add_vrect(
+        x0=start, x1=end,
+        fillcolor="rgba(173, 216, 230, 0.2)", 
+        layer="below", line_width=0, 
+
+    )
+fig.add_annotation(
+    x=2012, y=3070,
+    text="<b>Máximo histórico</b>",
+    showarrow=True, arrowhead=2, ax=0, ay=-40,
+    font=dict(color="#00a8cc", size=12)
 )
-fig_1.update_layout(**_layout)
+
+fig.update_layout(
+    title={
+        'text': "<b>Monitoreo de Ballenas en Baja California</b><br><span style='font-size:14px; color:gray;'>Variabilidad poblacional y salud del ecosistema</span>",
+        'y':0.96, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'
+    },
+    xaxis_title="Temporada (Año)",
+    yaxis_title="Individuos Registrados",
+    template="plotly_white", 
+    hovermode="x unified",    
+    font=dict(family="Arial", size=12, color="#2c3e50"),
+    margin=dict(l=60, r=60, t=110, b=60),
+    height=550
+)
+
+fig.update_xaxes(
+    tickformat=".0f",
+    tickangle=-45,
+    dtick=1.0,       
+    type='linear',    
+    range=[1996, 2024], 
+    showgrid=True, gridcolor='lightgray'
+)
+
+fig.update_yaxes(showgrid=True, gridcolor='lightgray')
+
 
 # ═══════════════════════════════════════════════
 #  GRÁFICA 2
@@ -197,7 +253,7 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 
 ```{python}
 #| label: grafica-1
-fig_1.show()
+fig.show()
 ```
 
 ### 📊 [Nombre Gráfica 2]
