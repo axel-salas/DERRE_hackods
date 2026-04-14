@@ -191,7 +191,7 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 
 # 📈 Análisis Exploratorio {.seccion}
 
-## Column {width="65%"}
+## Column {width="70%"}
 
 ::: {.panel-tabset .tabset-ocean}
 
