@@ -305,7 +305,7 @@ poner codigo como el de arriba en ambas una vez esten las graficas
 
 :::
 
-## Column {width="35%"}
+## Column {width="30%"}
 
 ::: {.panel-tabset .tabset-ocean}
 
