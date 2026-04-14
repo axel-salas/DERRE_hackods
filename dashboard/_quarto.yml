@@ -1,5 +1,14 @@
 project:
   type: website
+  output-dir: _site
 
 website:
-  title: "Dashboard"
+  title: "[TÍTULO DE TU DASHBOARD]"
+
+format:
+  dashboard:
+    scrolling: true
+    orientation: columns
+    theme:
+      - cosmo
+      - custom.css
