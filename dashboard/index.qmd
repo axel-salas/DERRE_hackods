@@ -255,7 +255,7 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 
 ```{python}
 #| label: grafica-1
-fig.show()
+fig
 ```
 
 ### 📊 [Nombre Gráfica 2]
