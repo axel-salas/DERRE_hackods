@@ -232,6 +232,7 @@ def crear_fig(ballenas):
 crear_fig(ballenas)
 ```
 
+
 ###  [Pelicanos]
 ```{python}
 from IPython.display import display
