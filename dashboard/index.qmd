@@ -120,7 +120,7 @@ fig.update_xaxes(
 
 fig.update_yaxes(showgrid=True, gridcolor='lightgray')
 
-
+<!--
 # ═══════════════════════════════════════════════
 #  GRÁFICA 2
 #  TODO: pega aquí el código de tu segunda figura
@@ -191,7 +191,7 @@ fig_conclu = px.area(
 )
 fig_conclu.update_layout(**_layout)
 ```
-
+-->
 # 🌊 Introducción {.seccion}
 
 ## Column {width="100%"}
