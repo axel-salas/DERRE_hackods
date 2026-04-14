@@ -36,7 +36,7 @@ C_TEAL  = "#2A9D8F"
 #  Ejemplo: df = pd.read_csv("datos/mi_archivo.csv")
 # ═══════════════════════════════════════════════
 np.random.seed(42)
-ballenas=pd.read_csv('datos/ballenas/ballenas.csv').iloc[:28]  
+ballenas = pd.read_csv('../datos/ballenas/ballenas.csv').iloc[:28] 
 ballenas.columns = ['año', 'poblacion registrada']
 ballenas['poblacion registrada']=ballenas['poblacion registrada'].str.replace(',', '').astype(float)
 ballenas['año']=pd.to_numeric(ballenas['año'])
