@@ -1,15 +1,22 @@
 project:
   type: website
+  output-dir: _site
 
 website:
-  title: "ODS 14 Dashboard"
+  title: "[TÍTULO DE TU DASHBOARD]"
   navbar:
     left:
       - href: index.qmd
         text: Inicio
       - href: analisis.qmd
-        text: Análisis
-      - href: modelo.qmd
-        text: Modelo
-      - href: conclusiones.qmd
-        text: Conclusiones
+        text: Análisis Exploratorio
+      - href: introduccion.qmd
+        text: Modelo Predictivo
+
+format:
+  dashboard:
+    scrolling: true
+    orientation: columns
+    theme:
+      - cosmo
+      - custom.css
