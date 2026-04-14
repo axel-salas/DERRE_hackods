@@ -221,12 +221,20 @@ fig.add_trace(go.Scatter(
                   "<extra></extra>"
 ))
 
-for i, (start, end) in enumerate(el_nino_periods):  
-    fig.add_vrect(
+shapes = [
+    dict(
+        type="rect",
         x0=start, x1=end,
-        fillcolor="rgba(173, 216, 230, 0.2)", 
-        layer="below", line_width=0, 
+        y0=0, y1=1,
+        xref="x", yref="paper",
+        fillcolor="rgba(173, 216, 230, 0.2)",
+        line_width=0,
+        layer="below"
+    )
+    for (start, end) in el_nino_periods
+]
 
+fig.update_layout(shapes=shapes)
     )
 fig.add_annotation(
     x=2012, y=3070,
