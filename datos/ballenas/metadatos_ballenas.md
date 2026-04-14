@@ -24,7 +24,7 @@ La información proviene de monitoreos sistemáticos realizados durante la tempo
   - Se ajusto el periodo de temporadas a año calendario.
   - Se juntaron los valores de ambas lagunas en un solo valor
 
-## Archivos originale
+## Archivos originales
 
 ### `ballenas.xlsx`
 - **Formato**: Excel, hoja de indicadores, hoja de metadatos originales, hoja de fuentes.
