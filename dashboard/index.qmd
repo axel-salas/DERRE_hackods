@@ -6,9 +6,6 @@ date: today
 format:
   dashboard:
     scrolling: true
-    theme:
-      - cosmo
-      - custom.css
     orientation: columns
 ---
 
@@ -20,6 +17,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import numpy as np
+import json
 
 # ── Paleta ODS 14 ─────────────────────────────
 C_DEEP  = "#03045E"
@@ -54,48 +52,11 @@ _layout = dict(
 )
 
 # ═══════════════════════════════════════════════
-#  GRÁFICA 1
-#  TODO: pega aquí el código de tu primera figura
-# ═══════════════════════════════════════════════
-fig_1 = px.line(
-    df, x="año", y="variable1",
-    title="[Nombre de tu Gráfica 1]",
-    labels={"año": "[Eje X]", "variable1": "[Eje Y]"},
-    color_discrete_sequence=[C_MID],
-)
-fig_1.update_layout(**_layout)
-
-# ═══════════════════════════════════════════════
-#  GRÁFICA 2
-#  TODO: pega aquí el código de tu segunda figura
-# ═══════════════════════════════════════════════
-fig_2 = px.bar(
-    df, x="año", y="variable2",
-    title="[Nombre de tu Gráfica 2]",
-    labels={"año": "[Eje X]", "variable2": "[Eje Y]"},
-    color_discrete_sequence=[C_LIGHT],
-)
-fig_2.update_layout(**_layout)
-
-# ═══════════════════════════════════════════════
-#  GRÁFICA 3
-#  TODO: pega aquí el código de tu tercera figura
-# ═══════════════════════════════════════════════
-fig_3 = px.scatter(
-    df, x="variable1", y="variable2",
-    size="variable3",
-    title="[Nombre de tu Gráfica 3]",
-    labels={"variable1": "[Variable X]", "variable2": "[Variable Y]"},
-    color_discrete_sequence=[C_TEAL],
-)
-fig_3.update_layout(**_layout)
-
-# ═══════════════════════════════════════════════
 #  GRÁFICA DEL MODELO PREDICTIVO
 #  TODO: reemplaza con la gráfica de tu modelo
 # ═══════════════════════════════════════════════
-x_pred  = np.linspace(df["año"].min(), df["año"].max() + 6, 100)
-y_pred  = np.polyval(np.polyfit(df["año"], df["variable1"], 2), x_pred)
+x_pred = np.linspace(df["año"].min(), df["año"].max() + 6, 100)
+y_pred = np.polyval(np.polyfit(df["año"], df["variable1"], 2), x_pred)
 
 fig_modelo = go.Figure()
 fig_modelo.add_trace(go.Scatter(
@@ -191,182 +152,235 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 
 ## Column {width="65%"}
 
-<!-- CORRECCIÓN 1-3: Se eliminó el {layout-ncol=2} con ## desnudos (inválido en
-     dashboard) y se reemplaza por ## Column correctos. El bloque ```{ojs} que
-     nunca se cerró fue cerrado apropiadamente con ``` al final del chunk. -->
+```{ojs}
+//| label: selector-grafica
 
-::: {.panel-tabset .tabset-ocean}
-
-### 📈 Tendencia
+// ── SELECTOR ÚNICO que controla gráfica y texto ──────────────
+// Cambia los nombres de las opciones según tus gráficas reales
+viewof opcion = Inputs.radio(
+  ["Tendencia", "Estacionalidad", "Correlación"],
+  {
+    label: "📌 Selecciona la visualización:",
+    value: "Tendencia"
+  }
+)
+```
 
 ```{ojs}
-//| label: ojs-tendencia
-datos_tendencia = [
-  { año: 2010, valor: 15.2 },
-  { año: 2012, valor: 15.5 },
-  { año: 2014, valor: 15.9 },
-  { año: 2016, valor: 16.3 },
-  { año: 2018, valor: 16.8 },
-  { año: 2020, valor: 17.1 },
-  { año: 2022, valor: 17.4 }
-]
+//| label: datos-ojs
 
-Plot.plot({
-  title: "Temperatura superficial del mar (°C)",
-  marks: [
-    Plot.line(datos_tendencia, { x: "año", y: "valor", stroke: "#0077B6", strokeWidth: 2.5 }),
-    Plot.dot(datos_tendencia,  { x: "año", y: "valor", fill: "#0077B6", r: 5 })
+// ═══════════════════════════════════════════════════════════
+//  DATOS PARA LAS GRÁFICAS OJS
+//  TODO: reemplaza estos arreglos con tus datos reales.
+//  Puedes también pasarlos desde Python con ojs_define().
+// ═══════════════════════════════════════════════════════════
+
+datos = ({
+  Tendencia: [
+    { x: 2010, y: 15.2 },
+    { x: 2012, y: 15.5 },
+    { x: 2014, y: 15.9 },
+    { x: 2016, y: 16.3 },
+    { x: 2018, y: 16.8 },
+    { x: 2020, y: 17.1 },
+    { x: 2022, y: 17.4 }
   ],
-  x: { label: "Año" },
-  y: { label: "Temperatura (°C)" }
+  Estacionalidad: [
+    { x: "Ene", y: 14.5 },
+    { x: "Feb", y: 14.7 },
+    { x: "Mar", y: 15.2 },
+    { x: "Abr", y: 16.0 },
+    { x: "May", y: 16.8 },
+    { x: "Jun", y: 17.5 },
+    { x: "Jul", y: 18.1 },
+    { x: "Ago", y: 18.3 },
+    { x: "Sep", y: 17.6 },
+    { x: "Oct", y: 16.4 },
+    { x: "Nov", y: 15.2 },
+    { x: "Dic", y: 14.6 }
+  ],
+  Correlación: [
+    { x: 8.05, y: 15.2 },
+    { x: 8.10, y: 14.8 },
+    { x: 8.02, y: 16.1 },
+    { x: 7.98, y: 16.9 },
+    { x: 7.95, y: 17.5 },
+    { x: 8.08, y: 15.0 },
+    { x: 8.00, y: 16.3 },
+    { x: 7.93, y: 18.0 },
+    { x: 8.12, y: 14.5 }
+  ]
+})
+
+// ── Configuración por gráfica ─────────────────────────────
+config = ({
+  Tendencia: {
+    titulo:  "Temperatura superficial del mar (°C)",
+    ejeX:    "Año",
+    ejeY:    "Temperatura (°C)",
+    tipo:    "linea",
+    color:   "#0077B6"
+  },
+  Estacionalidad: {
+    titulo:  "pH mensual del agua marina",
+    ejeX:    "Mes",
+    ejeY:    "pH",
+    tipo:    "barras",
+    color:   "#00B4D8"
+  },
+  Correlación: {
+    titulo:  "Relación pH vs Temperatura",
+    ejeX:    "pH",
+    ejeY:    "Temperatura (°C)",
+    tipo:    "dispersion",
+    color:   "#2A9D8F"
+  }
 })
 ```
 
-### 📊 Estacionalidad
-
 ```{ojs}
-//| label: ojs-estacionalidad
-datos_estacional = [
-  { mes: "Ene", valor: 14.5 },
-  { mes: "Feb", valor: 14.7 },
-  { mes: "Mar", valor: 15.2 },
-  { mes: "Abr", valor: 16.0 },
-  { mes: "May", valor: 16.8 },
-  { mes: "Jun", valor: 17.5 },
-  { mes: "Jul", valor: 18.1 },
-  { mes: "Ago", valor: 18.3 },
-  { mes: "Sep", valor: 17.6 },
-  { mes: "Oct", valor: 16.4 },
-  { mes: "Nov", valor: 15.2 },
-  { mes: "Dic", valor: 14.6 }
-]
+//| label: grafica-reactiva
 
-Plot.plot({
-  title: "pH mensual del agua marina",
-  marks: [
-    Plot.barY(datos_estacional, { x: "mes", y: "valor", fill: "#00B4D8" })
-  ],
-  x: { label: "Mes" },
-  y: { label: "pH" }
-})
+// ── Gráfica que cambia con el selector ───────────────────
+{
+  const d   = datos[opcion]
+  const cfg = config[opcion]
+
+  if (cfg.tipo === "linea") {
+    return Plot.plot({
+      title:  cfg.titulo,
+      marks: [
+        Plot.line(d, { x: "x", y: "y", stroke: cfg.color, strokeWidth: 2.5 }),
+        Plot.dot(d,  { x: "x", y: "y", fill:   cfg.color, r: 5 })
+      ],
+      x: { label: cfg.ejeX },
+      y: { label: cfg.ejeY }
+    })
+  } else if (cfg.tipo === "barras") {
+    return Plot.plot({
+      title:  cfg.titulo,
+      marks: [
+        Plot.barY(d, { x: "x", y: "y", fill: cfg.color })
+      ],
+      x: { label: cfg.ejeX },
+      y: { label: cfg.ejeY }
+    })
+  } else {
+    return Plot.plot({
+      title:  cfg.titulo,
+      marks: [
+        Plot.dot(d, { x: "x", y: "y", fill: cfg.color, r: 6 }),
+        Plot.linearRegressionY(d, { x: "x", y: "y", stroke: "#F4A261", strokeWidth: 2 })
+      ],
+      x: { label: cfg.ejeX },
+      y: { label: cfg.ejeY }
+    })
+  }
+}
 ```
-
-### 🔵 Correlación
-
-```{ojs}
-//| label: ojs-correlacion
-datos_correlacion = [
-  { ph: 8.05, temp: 15.2 },
-  { ph: 8.10, temp: 14.8 },
-  { ph: 8.02, temp: 16.1 },
-  { ph: 7.98, temp: 16.9 },
-  { ph: 7.95, temp: 17.5 },
-  { ph: 8.08, temp: 15.0 },
-  { ph: 8.00, temp: 16.3 },
-  { ph: 7.93, temp: 18.0 },
-  { ph: 8.12, temp: 14.5 }
-]
-
-Plot.plot({
-  title: "pH vs Temperatura",
-  marks: [
-    Plot.dot(datos_correlacion, { x: "ph", y: "temp", fill: "#2A9D8F", r: 6 }),
-    Plot.linearRegressionY(datos_correlacion, { x: "ph", y: "temp", stroke: "#F4A261", strokeWidth: 2 })
-  ],
-  x: { label: "pH" },
-  y: { label: "Temperatura (°C)" }
-})
-```
-
-:::
 
 ## Column {width="35%"}
 
-<!-- CORRECCIÓN 4: Los paneles de texto ahora usan panel-tabset sincronizado
-     con las mismas pestañas que la columna izquierda, reemplazando los
-     callouts sueltos con OJS sin contexto que tenía el original. -->
+```{ojs}
+//| label: texto-reactivo
 
-::: {.panel-tabset .tabset-ocean}
+// ── Textos que cambian con el mismo selector ──────────────
+// TODO: edita los textos de cada opción con tu contenido real
 
-### 📈 Tendencia
+textos = ({
+  Tendencia: {
+    titulo:    "Temperatura superficial del mar",
+    descripcion: `[Explica qué muestra esta gráfica, la tendencia
+principal observada y su relación con el ODS 14.
+Puedes mencionar el período analizado y la fuente de datos.]`,
+    variables: [
+      ["Variable 1", "[Descripción breve]"],
+      ["Variable 2", "[Descripción breve]"],
+      ["Fuente",     "[Origen de los datos]"]
+    ],
+    hallazgo:  "[Dato o tendencia más importante de esta gráfica.]"
+  },
+  Estacionalidad: {
+    titulo:    "pH mensual del agua marina",
+    descripcion: `[Explica qué muestra esta gráfica, el patrón
+estacional observado y su relevancia para el ODS 14.
+Indica qué meses presentan los valores más críticos.]`,
+    variables: [
+      ["Variable 1", "[Descripción breve]"],
+      ["Variable 2", "[Descripción breve]"],
+      ["Fuente",     "[Origen de los datos]"]
+    ],
+    hallazgo:  "[Dato o tendencia más importante de esta gráfica.]"
+  },
+  Correlación: {
+    titulo:    "Relación pH vs Temperatura",
+    descripcion: `[Explica qué revela la correlación entre estas
+variables y su implicación para los ecosistemas marinos
+en el contexto del ODS 14.]`,
+    variables: [
+      ["Variable X", "[Descripción breve]"],
+      ["Variable Y", "[Descripción breve]"],
+      ["Fuente",     "[Origen de los datos]"]
+    ],
+    hallazgo:  "[Dato o tendencia más importante de esta gráfica.]"
+  }
+})
 
-::: {.callout-note appearance="minimal" icon=false}
-## Temperatura superficial del mar
+t = textos[opcion]
 
-<!--
-Descripción de la Gráfica 1 y su relevancia para el ODS 14.
--->
-[Explica qué muestra esta gráfica, la tendencia principal
-observada y su relación con el ODS 14.]
+// Renderiza el panel de texto reactivo
+htl.html`
+<div style="
+  background: rgba(202,240,248,0.35);
+  border-left: 4px solid #0077B6;
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: #1a2940;
+">
+  <h3 style="
+    font-family: Georgia, serif;
+    color: #03045E;
+    font-size: 1.05rem;
+    margin: 0 0 0.8rem 0;
+    border-bottom: 2px solid #CAF0F8;
+    padding-bottom: 0.5rem;
+  ">${t.titulo}</h3>
 
-**Variables utilizadas:**
+  <p style="margin: 0 0 1rem 0; color: #4a6278;">${t.descripcion}</p>
 
-- **[Variable 1]:** [Descripción breve]
-- **[Variable 2]:** [Descripción breve]
-- **Fuente:** [Origen de los datos]
-:::
+  <p style="
+    font-weight: 600;
+    color: #0077B6;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.4rem;
+  ">Variables utilizadas:</p>
 
-::: {.callout-important appearance="minimal" icon=false}
-## 💡 Hallazgo clave
+  <ul style="margin: 0 0 1rem 0; padding-left: 1.1rem; color: #1a2940;">
+    ${t.variables.map(([k, v]) =>
+      `<li style="padding: 0.2rem 0; border-bottom: 1px dashed rgba(0,119,182,0.18);">
+        <strong>${k}:</strong> ${v}
+      </li>`
+    ).join("")}
+  </ul>
 
-[Escribe aquí el dato o tendencia más importante que
-revela esta gráfica.]
-:::
-
-### 📊 Estacionalidad
-
-::: {.callout-note appearance="minimal" icon=false}
-## pH mensual del agua marina
-
-<!--
-Descripción de la Gráfica 2 y su relevancia para el ODS 14.
--->
-[Explica qué muestra esta gráfica, la variación estacional
-y su relación con el ODS 14.]
-
-**Variables utilizadas:**
-
-- **[Variable 1]:** [Descripción breve]
-- **[Variable 2]:** [Descripción breve]
-- **Fuente:** [Origen de los datos]
-:::
-
-::: {.callout-important appearance="minimal" icon=false}
-## 💡 Hallazgo clave
-
-[Dato o tendencia más importante de la segunda gráfica.]
-:::
-
-### 🔵 Correlación
-
-::: {.callout-note appearance="minimal" icon=false}
-## pH vs Temperatura
-
-<!--
-Descripción de la Gráfica 3 y su relevancia para el ODS 14.
--->
-[Explica qué muestra esta gráfica, la relación entre ambas
-variables y su relevancia para el ODS 14.]
-
-**Variables utilizadas:**
-
-- **[Variable 1]:** [Descripción breve]
-- **[Variable 2]:** [Descripción breve]
-- **Fuente:** [Origen de los datos]
-:::
-
-::: {.callout-important appearance="minimal" icon=false}
-## 💡 Hallazgo clave
-
-[Dato o tendencia más importante de la tercera gráfica.]
-:::
-
-:::
+  <div style="
+    background: rgba(244,162,97,0.12);
+    border-left: 4px solid #F4A261;
+    border-radius: 0 8px 8px 0;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+  ">
+    💡 <strong>Hallazgo clave:</strong> ${t.hallazgo}
+  </div>
+</div>`
+```
 
 # 🤖 Modelo Predictivo {.seccion}
-
-<!-- CORRECCIÓN 5: Se restauró la sección completa del Modelo Predictivo que
-     había desaparecido del documento original por el error del bloque OJS. -->
 
 ## Column {width="60%"}
 
