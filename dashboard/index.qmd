@@ -830,24 +830,6 @@ def construir_figura(variable='H'):
         hovertemplate='Año: %{x}<br>Valor: %{y:.3f}<extra></extra>',
     ))
 
-    # Bandas de incertidumbre (ACTIVADAS)
-    fig.add_trace(go.Scatter(
-        x=band_x, y=band_y(d0, di),
-        fill='toself', fillcolor=_hex_rgba(col_iner, 0.12),
-        line=dict(color='rgba(0,0,0,0)'),
-        showlegend=False,
-        name='_band_iner',
-        hoverinfo='skip',
-    ))
-    fig.add_trace(go.Scatter(
-        x=band_x, y=band_y(d0, dk),
-        fill='toself', fillcolor=_hex_rgba(col_cons, 0.15),
-        line=dict(color='rgba(0,0,0,0)'),
-        showlegend=False,
-        name='_band_cons',
-        hoverinfo='skip',
-    ))
-
     # Curvas de mediana
     fig.add_trace(go.Scatter(
         x=AÑOS_FULL, y=list(d0[di]['med']),
