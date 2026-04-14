@@ -278,7 +278,7 @@ def crear_fig(ballenas):
             y=-0.15,
             x=0.5,
             xanchor="center"
-        )
+        ),
         
         margin=dict(l=60, r=20, t=110, b=90)
 
