@@ -10,7 +10,6 @@ format:
   dashboard:
     scrolling: true
     theme:
-      - cosmo
       - custom.css
     orientation: columns
     self-contained: true 
@@ -191,7 +190,7 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 
 # 📈 Análisis Exploratorio {.seccion}
 
-## Column {width="70%"}
+## Column {.fill}
 
 ::: {.panel-tabset .tabset-ocean}
 
@@ -312,7 +311,7 @@ poner codigo como el de arriba en ambas una vez esten las graficas
 
 :::
 
-## Column {width="30%"}
+## Column {.fill}
 
 ::: {.panel-tabset .tabset-ocean}
 
