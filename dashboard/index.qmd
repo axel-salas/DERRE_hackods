@@ -271,17 +271,18 @@ def crear_fig(ballenas):
         template="plotly_white",
         hovermode="x unified",
         font=dict(family="Arial", size=12, color="#2c3e50"),
-
+    
         autosize=True,
+    
         legend=dict(
-            orientation="h",
-            y=-0.15,
-            x=0.5,
-            xanchor="center"
+            orientation="v",
+            y=0.5,
+            yanchor="middle",
+            x=1.02,
+            xanchor="left"
         ),
-        
-        margin=dict(l=60, r=20, t=110, b=90),
-
+    
+        margin=dict(l=60, r=120, t=110, b=60),
         height=550
     )
 
