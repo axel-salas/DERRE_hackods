@@ -198,7 +198,7 @@ el_nino_periods = [
     (2002, 2003), (2004, 2005), (2006, 2007), (2009, 2010), (2014, 2016),(2018, 2019)
 ]
 
-fig = go.Figure()
+fig_ballenas = go.Figure()
 fig.add_trace(go.Scatter(
     x=[None], y=[None],
     mode='markers',
@@ -258,7 +258,7 @@ fig.update_xaxes(
 
 fig.update_yaxes(showgrid=True, gridcolor='lightgray')
 
-fig
+fig_ballenas
 ```
 
 ### 📊 [Nombre Gráfica 2]
