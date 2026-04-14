@@ -3,6 +3,9 @@ title: "[TÍTULO DE TU DASHBOARD]"
 subtitle: "ODS 14 · Vida Submarina — [Subtítulo de tu investigación]"
 author: "[Tu Nombre]"
 date: today
+execute:
+  echo: false
+  warning: false
 format:
   dashboard:
     scrolling: true
@@ -10,6 +13,7 @@ format:
       - cosmo
       - custom.css
     orientation: columns
+    self-contained: true 
 ---
 
 ```{python}
