@@ -1,176 +1,37 @@
----
-title: "[TÍTULO DE TU DASHBOARD]"
-subtitle: "ODS 14 · Vida Submarina — [Subtítulo de tu investigación]"
-author: "[Tu Nombre]"
-date: today
-format:
-  dashboard:
-    scrolling: true
-    orientation: columns
----
+//| label: grafica-reactiva
 
-```{python}
-#| label: setup
-#| include: false
-
-import plotly.graph_objects as go
-import plotly.express as px
-import pandas as pd
-import numpy as np
-
-C_DEEP  = "#03045E"
-C_MID   = "#0077B6"
-C_LIGHT = "#00B4D8"
-C_FOAM  = "#90E0EF"
-C_MIST  = "#CAF0F8"
-C_CORAL = "#F4A261"
-C_TEAL  = "#2A9D8F"
-
-np.random.seed(42)
-df = pd.DataFrame({
-    "año": list(range(2000, 2024)),
-    "variable1": np.random.uniform(40, 90, 24),
-    "variable2": np.random.uniform(20, 70, 24),
-    "variable3": np.cumsum(np.random.randn(24)) + 50,
-})
-
-_layout = dict(
-    template="plotly_white",
-    plot_bgcolor=C_MIST,
-    paper_bgcolor="white",
-    font_color=C_DEEP,
-    margin=dict(l=40, r=20, t=55, b=40),
-)
-
-x_pred = np.linspace(df["año"].min(), df["año"].max() + 6, 100)
-y_pred = np.polyval(np.polyfit(df["año"], df["variable1"], 2), x_pred)
-
-fig_modelo = go.Figure()
-fig_modelo.add_trace(go.Scatter(
-    x=df["año"], y=df["variable1"],
-    mode="markers", marker=dict(color=C_MID)
-))
-fig_modelo.add_trace(go.Scatter(
-    x=x_pred, y=y_pred,
-    mode="lines", line=dict(color=C_CORAL, dash="dash")
-))
-fig_modelo.update_layout(**_layout)
-
-fig_conclu = px.area(df, x="año", y="variable3", color_discrete_sequence=[C_TEAL])
-fig_conclu.update_layout(**_layout)
-```
-
-# 📈 Análisis Exploratorio
-
-## Column {width="65%"}
-
-```{ojs}
-viewof opcion_input = Inputs.radio(
-  ["Tendencia", "Estacionalidad", "Correlación"],
-  { label: "📌 Selecciona la visualización:", value: "Tendencia" }
-)
-
-opcion = Generators.input(viewof opcion_input)
-```
-
-```{ojs}
-datos = ({
-  Tendencia: [
-    { x: 2010, y: 15.2 },
-    { x: 2012, y: 15.5 },
-    { x: 2014, y: 15.9 }
-  ],
-  Estacionalidad: [
-    { x: "Ene", y: 14.5 },
-    { x: "Feb", y: 14.7 }
-  ],
-  Correlación: [
-    { x: 8.05, y: 15.2 },
-    { x: 8.10, y: 14.8 }
-  ]
-})
-
-config = ({
-  Tendencia: { tipo: "linea", color: "#0077B6", titulo: "Tendencia" },
-  Estacionalidad: { tipo: "barras", color: "#00B4D8", titulo: "Estacionalidad" },
-  Correlación: { tipo: "dispersion", color: "#2A9D8F", titulo: "Correlación" }
-})
-```
-
-```{ojs}
 grafica = {
-  const d = datos[opcion]
+  const d   = datos[opcion]
   const cfg = config[opcion]
 
   if (cfg.tipo === "linea") {
     return Plot.plot({
       title: cfg.titulo,
       marks: [
-        Plot.line(d, { x: "x", y: "y", stroke: cfg.color }),
-        Plot.dot(d, { x: "x", y: "y", fill: cfg.color })
-      ]
+        Plot.line(d, { x: "x", y: "y", stroke: cfg.color, strokeWidth: 2.5 }),
+        Plot.dot(d,  { x: "x", y: "y", fill: cfg.color, r: 5 })
+      ],
+      x: { label: cfg.ejeX },
+      y: { label: cfg.ejeY }
     })
-  }
-
-  if (cfg.tipo === "barras") {
+  } else if (cfg.tipo === "barras") {
     return Plot.plot({
       title: cfg.titulo,
       marks: [
         Plot.barY(d, { x: "x", y: "y", fill: cfg.color })
-      ]
+      ],
+      x: { label: cfg.ejeX },
+      y: { label: cfg.ejeY }
+    })
+  } else {
+    return Plot.plot({
+      title: cfg.titulo,
+      marks: [
+        Plot.dot(d, { x: "x", y: "y", fill: cfg.color, r: 6 }),
+        Plot.linearRegressionY(d, { x: "x", y: "y", stroke: "#F4A261", strokeWidth: 2 })
+      ],
+      x: { label: cfg.ejeX },
+      y: { label: cfg.ejeY }
     })
   }
-
-  return Plot.plot({
-    title: cfg.titulo,
-    marks: [
-      Plot.dot(d, { x: "x", y: "y", fill: cfg.color }),
-      Plot.linearRegressionY(d, { x: "x", y: "y", stroke: "#F4A261" })
-    ]
-  })
 }
-```
-
-## Column {width="35%"}
-
-```{ojs}
-textos = ({
-  Tendencia: {
-    titulo: "Temperatura del mar",
-    descripcion: "Se observa una tendencia creciente.",
-    hallazgo: "La temperatura aumenta progresivamente."
-  },
-  Estacionalidad: {
-    titulo: "pH mensual",
-    descripcion: "Variación estacional clara.",
-    hallazgo: "Meses cálidos tienen menor pH."
-  },
-  Correlación: {
-    titulo: "Relación pH vs Temp",
-    descripcion: "Existe correlación inversa.",
-    hallazgo: "Mayor temperatura → menor pH."
-  }
-})
-
-t = textos[opcion]
-
-htl.html`
-<div>
-  <h3>${t.titulo}</h3>
-  <p>${t.descripcion}</p>
-  <b>💡 ${t.hallazgo}</b>
-</div>
-`
-```
-
-# 🤖 Modelo Predictivo
-
-```{python}
-fig_modelo.show()
-```
-
-# 🏁 Conclusiones
-
-```{python}
-fig_conclu.show()
-```
