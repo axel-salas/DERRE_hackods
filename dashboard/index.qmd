@@ -272,11 +272,12 @@ fig
 ```
 
 ### 📊 [Nombre Gráfica 2]
+*(Próximamente)*
 <!--
 poner codigo como el de arriba en ambas una vez esten las graficas
 -->
 ### 🔵 [Nombre Gráfica 3]
-
+*(Próximamente)*
 
 :::
 
