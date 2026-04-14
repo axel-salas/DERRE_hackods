@@ -120,6 +120,7 @@ fig.update_xaxes(
 
 fig.update_yaxes(showgrid=True, gridcolor='lightgray')
 
+```
 <!--
 # ═══════════════════════════════════════════════
 #  GRÁFICA 2
@@ -190,7 +191,8 @@ fig_conclu = px.area(
     color_discrete_sequence=[C_TEAL],
 )
 fig_conclu.update_layout(**_layout)
-```
+
+poner comillas de regreso!
 -->
 # 🌊 Introducción {.seccion}
 
