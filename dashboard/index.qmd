@@ -9,8 +9,6 @@ execute:
 format:
   dashboard:
     scrolling: true
-    theme:
-      - custom.css
     orientation: columns
     self-contained: true 
 ---
@@ -630,11 +628,13 @@ Esta es la paradoja central: a mayor extracción, menor biomasa silvestre observ
 [Dato o tendencia más importante de la tercera gráfica.]
 :::
 
-:::
 
 #  Modelo Predictivo {.seccion}
 
 ## Column {width="60%"}
+
+::: {.intro-hero}
+## Cuando la ecología se vuelve matemática
 
 ::: {.callout-tip appearance="minimal" icon=false}
 ## Cuando la ecología se vuelve matemática
@@ -1021,7 +1021,7 @@ El modelo nos permite hacer algo que los datos históricos solos no pueden: expl
 # Escenarios a futuro {.seccion}
 
 ## Column {width="55%"}
-
+sfaadfda
 
 ## Column {width="45%"}
 
