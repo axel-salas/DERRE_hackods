@@ -280,7 +280,7 @@ def crear_fig(ballenas):
             xanchor="center"
         ),
         
-        margin=dict(l=60, r=20, t=110, b=90)
+        margin=dict(l=60, r=20, t=110, b=90),
 
         height=550
     )
