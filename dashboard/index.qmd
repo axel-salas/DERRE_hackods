@@ -164,7 +164,15 @@ viewof opcion = Inputs.radio(
     value: "Tendencia"
   }
 )
+opcion = Generators.input(viewof opcion)
 ```
+
+```{ojs}
+//| label: opcion-valor
+
+opcion_valor = opcion
+```
+
 
 ```{ojs}
 //| label: datos-ojs
@@ -243,8 +251,8 @@ config = ({
 
 // ── Gráfica que cambia con el selector ───────────────────
 {
-  const d   = datos[opcion]
-  const cfg = config[opcion]
+  const d   = datos[opcion_valor]
+  const cfg = config[opcion_valor]
 
   if (cfg.tipo === "linea") {
     return Plot.plot({
@@ -326,7 +334,7 @@ en el contexto del ODS 14.]`,
   }
 })
 
-t = textos[opcion]
+t = textos[opcion_valor]
 
 // Renderiza el panel de texto reactivo
 htl.html`
