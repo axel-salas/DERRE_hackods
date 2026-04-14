@@ -25,6 +25,7 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
+
 # ── Paleta ODS 14 ─────────────────────────────
 C_DEEP  = "#03045E"
 C_MID   = "#0077B6"
@@ -272,7 +273,9 @@ fig.update_xaxes(
 
 fig.update_yaxes(showgrid=True, gridcolor='lightgray')
 
-fig
+from IPython.display import display
+display(fig)
+
 ```
 
 ### 📊 [Nombre Gráfica 2]
