@@ -299,6 +299,7 @@ def crear_fig(ballenas):
     return fig
 
 display(crear_fig(ballenas))
+```
 
 ### 📊 [Nombre Gráfica 2]
 *(Próximamente)*
