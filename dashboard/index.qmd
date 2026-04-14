@@ -6,6 +6,9 @@ date: today
 format:
   dashboard:
     scrolling: true
+    theme:
+      - cosmo
+      - custom.css
     orientation: columns
 ---
 
@@ -40,6 +43,7 @@ df = pd.DataFrame({
     "variable3": np.cumsum(np.random.randn(24)) + 50,
 })
 
+# ── Layout base para todas las figuras ────────
 _layout = dict(
     template="plotly_white",
     plot_bgcolor=C_MIST,
@@ -50,11 +54,48 @@ _layout = dict(
 )
 
 # ═══════════════════════════════════════════════
+#  GRÁFICA 1
+#  TODO: pega aquí el código de tu primera figura
+# ═══════════════════════════════════════════════
+fig_1 = px.line(
+    df, x="año", y="variable1",
+    title="[Nombre de tu Gráfica 1]",
+    labels={"año": "[Eje X]", "variable1": "[Eje Y]"},
+    color_discrete_sequence=[C_MID],
+)
+fig_1.update_layout(**_layout)
+
+# ═══════════════════════════════════════════════
+#  GRÁFICA 2
+#  TODO: pega aquí el código de tu segunda figura
+# ═══════════════════════════════════════════════
+fig_2 = px.bar(
+    df, x="año", y="variable2",
+    title="[Nombre de tu Gráfica 2]",
+    labels={"año": "[Eje X]", "variable2": "[Eje Y]"},
+    color_discrete_sequence=[C_LIGHT],
+)
+fig_2.update_layout(**_layout)
+
+# ═══════════════════════════════════════════════
+#  GRÁFICA 3
+#  TODO: pega aquí el código de tu tercera figura
+# ═══════════════════════════════════════════════
+fig_3 = px.scatter(
+    df, x="variable1", y="variable2",
+    size="variable3",
+    title="[Nombre de tu Gráfica 3]",
+    labels={"variable1": "[Variable X]", "variable2": "[Variable Y]"},
+    color_discrete_sequence=[C_TEAL],
+)
+fig_3.update_layout(**_layout)
+
+# ═══════════════════════════════════════════════
 #  GRÁFICA DEL MODELO PREDICTIVO
 #  TODO: reemplaza con la gráfica de tu modelo
 # ═══════════════════════════════════════════════
-x_pred = np.linspace(df["año"].min(), df["año"].max() + 6, 100)
-y_pred = np.polyval(np.polyfit(df["año"], df["variable1"], 2), x_pred)
+x_pred  = np.linspace(df["año"].min(), df["año"].max() + 6, 100)
+y_pred  = np.polyval(np.polyfit(df["año"], df["variable1"], 2), x_pred)
 
 fig_modelo = go.Figure()
 fig_modelo.add_trace(go.Scatter(
@@ -95,7 +136,7 @@ fig_conclu = px.area(
 fig_conclu.update_layout(**_layout)
 ```
 
-# 🌊 Introducción
+# 🌊 Introducción {.seccion}
 
 ## Column {width="100%"}
 
@@ -110,7 +151,7 @@ fig_conclu.update_layout(**_layout)
 
 <!--
 ════════════════════════════════════════════════════
-PÁRRAFO DE APERTURA / STORYTELLING
+STORYTELLING — PÁRRAFO DE APERTURA
 Empieza con un dato impactante o una pregunta poderosa.
 Ejemplo: "Cada minuto, el equivalente a un camión de
 basura llega a nuestros océanos..."
@@ -146,199 +187,117 @@ análisis exploratorio, modelo predictivo y conclusiones.]
 |:---:|:---:|:---:|:---:|
 | [N variables] | [Años de estudio] | [Región / país] | Meta [X] |
 
-# 📈 Análisis Exploratorio
+# 📈 Análisis Exploratorio {.seccion}
 
-## Row {height="100%"}
+## Column {width="65%"}
 
-### Column {width="65%"}
+::: {.panel-tabset .tabset-ocean}
 
-```{ojs}
-//| label: analisis-izquierda
-// ─────────────────────────────────────────────────────────────
-// BLOQUE OJS ÚNICO para la columna izquierda.
-// Contiene: selector + datos + gráfica reactiva en un solo chunk
-// para evitar que cada chunk cree una fila separada en el dashboard.
-// ─────────────────────────────────────────────────────────────
+### 📉 [Nombre Gráfica 1]
 
-// ── Importar Observable Plot (requerido explícitamente) ──────
-import { Plot } from "@observablehq/plot"
-
-// ── SELECTOR ─────────────────────────────────────────────────
-// TODO: cambia los nombres por los de tus gráficas reales
-viewof opcion = Inputs.radio(
-  ["Tendencia", "Estacionalidad", "Correlación"],
-  { label: "📌 Selecciona la visualización:", value: "Tendencia" }
-)
-
-// ── DATOS ─────────────────────────────────────────────────────
-// TODO: reemplaza estos arreglos con tus datos reales.
-// También puedes pasarlos desde Python usando ojs_define():
-//   ojs_define(mis_datos = df.to_dict(orient="records"))
-// y luego usar `transpose(mis_datos)` aquí.
-datos = ({
-  Tendencia: [
-    { x: 2010, y: 15.2 }, { x: 2012, y: 15.5 },
-    { x: 2014, y: 15.9 }, { x: 2016, y: 16.3 },
-    { x: 2018, y: 16.8 }, { x: 2020, y: 17.1 },
-    { x: 2022, y: 17.4 }
-  ],
-  Estacionalidad: [
-    { x: "Ene", y: 14.5 }, { x: "Feb", y: 14.7 },
-    { x: "Mar", y: 15.2 }, { x: "Abr", y: 16.0 },
-    { x: "May", y: 16.8 }, { x: "Jun", y: 17.5 },
-    { x: "Jul", y: 18.1 }, { x: "Ago", y: 18.3 },
-    { x: "Sep", y: 17.6 }, { x: "Oct", y: 16.4 },
-    { x: "Nov", y: 15.2 }, { x: "Dic", y: 14.6 }
-  ],
-  Correlación: [
-    { x: 8.05, y: 15.2 }, { x: 8.10, y: 14.8 },
-    { x: 8.02, y: 16.1 }, { x: 7.98, y: 16.9 },
-    { x: 7.95, y: 17.5 }, { x: 8.08, y: 15.0 },
-    { x: 8.00, y: 16.3 }, { x: 7.93, y: 18.0 },
-    { x: 8.12, y: 14.5 }
-  ]
-})
-
-cfg = ({
-  Tendencia:     { titulo: "Temperatura superficial del mar (°C)",
-                   ejeX: "Año", ejeY: "Temperatura (°C)",
-                   tipo: "linea", color: "#0077B6" },
-  Estacionalidad:{ titulo: "pH mensual del agua marina",
-                   ejeX: "Mes", ejeY: "pH",
-                   tipo: "barras", color: "#00B4D8" },
-  Correlación:   { titulo: "Relación pH vs Temperatura",
-                   ejeX: "pH", ejeY: "Temperatura (°C)",
-                   tipo: "dispersion", color: "#2A9D8F" }
-})
-
-// ── GRÁFICA REACTIVA ──────────────────────────────────────────
-grafica = {
-  const d = datos[opcion]
-  const c = cfg[opcion]
-  const base = { width: 600, height: 380,
-                 x: { label: c.ejeX }, y: { label: c.ejeY } }
-  if (c.tipo === "linea") {
-    return Plot.plot({ ...base, marks: [
-      Plot.line(d, { x: "x", y: "y", stroke: c.color, strokeWidth: 2.5 }),
-      Plot.dot(d,  { x: "x", y: "y", fill: c.color, r: 5 })
-    ]})
-  } else if (c.tipo === "barras") {
-    return Plot.plot({ ...base, marks: [
-      Plot.barY(d, { x: "x", y: "y", fill: c.color }),
-      Plot.ruleY([0])
-    ]})
-  } else {
-    return Plot.plot({ ...base, marks: [
-      Plot.dot(d, { x: "x", y: "y", fill: c.color, r: 6 }),
-      Plot.linearRegressionY(d, { x: "x", y: "y",
-        stroke: "#F4A261", strokeWidth: 2 })
-    ]})
-  }
-}
-
-grafica
+```{python}
+#| label: grafica-1
+fig_1.show()
 ```
 
-### Column {width="35%"}
+### 📊 [Nombre Gráfica 2]
 
-```{ojs}
-//| label: analisis-derecha
-// ─────────────────────────────────────────────────────────────
-// BLOQUE OJS ÚNICO para la columna derecha.
-// El panel de texto reactivo que cambia con el mismo selector.
-// opcion y cfg están disponibles porque OJS comparte el runtime.
-// ─────────────────────────────────────────────────────────────
-
-textos = ({
-  Tendencia: {
-    titulo: "Temperatura superficial del mar",
-    // TODO: reemplaza con tu descripción real de la Gráfica 1
-    descripcion: "[Explica qué muestra esta gráfica, la tendencia \
-principal observada y su relación con el ODS 14. \
-Puedes mencionar el período analizado y la fuente de datos.]",
-    variables: [
-      ["[Variable 1]", "[Descripción breve]"],
-      ["[Variable 2]", "[Descripción breve]"],
-      ["Fuente",       "[Origen de los datos]"]
-    ],
-    // TODO: reemplaza con el hallazgo real de la Gráfica 1
-    hallazgo: "[Dato o tendencia más importante de esta gráfica.]"
-  },
-  Estacionalidad: {
-    titulo: "pH mensual del agua marina",
-    // TODO: reemplaza con tu descripción real de la Gráfica 2
-    descripcion: "[Explica qué muestra esta gráfica, el patrón \
-estacional observado y su relevancia para el ODS 14. \
-Indica qué meses presentan los valores más críticos.]",
-    variables: [
-      ["[Variable 1]", "[Descripción breve]"],
-      ["[Variable 2]", "[Descripción breve]"],
-      ["Fuente",       "[Origen de los datos]"]
-    ],
-    // TODO: reemplaza con el hallazgo real de la Gráfica 2
-    hallazgo: "[Dato o tendencia más importante de esta gráfica.]"
-  },
-  Correlación: {
-    titulo: "Relación pH vs Temperatura",
-    // TODO: reemplaza con tu descripción real de la Gráfica 3
-    descripcion: "[Explica qué revela la correlación entre estas \
-variables y su implicación para los ecosistemas marinos \
-en el contexto del ODS 14.]",
-    variables: [
-      ["[Variable X]", "[Descripción breve]"],
-      ["[Variable Y]", "[Descripción breve]"],
-      ["Fuente",       "[Origen de los datos]"]
-    ],
-    // TODO: reemplaza con el hallazgo real de la Gráfica 3
-    hallazgo: "[Dato o tendencia más importante de esta gráfica.]"
-  }
-})
-
-t = textos[opcion]
-
-htl.html`<div style="
-    background:rgba(202,240,248,0.4);
-    border-left:4px solid #0077B6;
-    border-radius:10px;
-    padding:1.3rem 1.5rem;
-    font-family:sans-serif;
-    font-size:0.93rem;
-    line-height:1.75;
-    color:#1a2940;
-    height:100%;
-    box-sizing:border-box;">
-
-  <h3 style="font-family:Georgia,serif;color:#03045E;font-size:1.05rem;
-             margin:0 0 0.8rem;border-bottom:2px solid #CAF0F8;
-             padding-bottom:0.5rem;">${t.titulo}</h3>
-
-  <p style="margin:0 0 1rem;color:#4a6278;">${t.descripcion}</p>
-
-  <p style="font-weight:600;color:#0077B6;font-size:0.8rem;
-            text-transform:uppercase;letter-spacing:0.5px;
-            margin-bottom:0.4rem;">Variables utilizadas:</p>
-
-  <ul style="margin:0 0 1rem;padding-left:1.1rem;color:#1a2940;">
-    ${t.variables.map(([k,v]) => htl.html`<li style="padding:0.2rem 0;
-      border-bottom:1px dashed rgba(0,119,182,0.2);">
-      <strong>${k}:</strong> ${v}</li>`)}
-  </ul>
-
-  <div style="background:rgba(244,162,97,0.13);
-              border-left:4px solid #F4A261;
-              border-radius:0 8px 8px 0;
-              padding:0.75rem 1rem;
-              font-size:0.9rem;">
-    💡 <strong>Hallazgo clave:</strong> ${t.hallazgo}
-  </div>
-</div>`
+```{python}
+#| label: grafica-2
+fig_2.show()
 ```
 
-# 🤖 Modelo Predictivo
+### 🔵 [Nombre Gráfica 3]
 
-## Row {height="100%"}
+```{python}
+#| label: grafica-3
+fig_3.show()
+```
 
-### Column {width="60%"}
+:::
+
+## Column {width="35%"}
+
+::: {.panel-tabset .tabset-ocean}
+
+### 📉 Gráfica 1
+
+::: {.callout-note appearance="minimal" icon=false}
+## [Nombre de la Gráfica 1]
+
+<!--
+Descripción de la Gráfica 1 y su relevancia para el ODS 14.
+-->
+[Explica qué muestra la primera gráfica, la tendencia
+principal y su relación con el ODS 14.]
+
+**Variables utilizadas:**
+
+- **[Variable 1]:** [Descripción breve]
+- **[Variable 2]:** [Descripción breve]
+- **Fuente:** [Origen de los datos]
+:::
+
+::: {.callout-important appearance="minimal" icon=false}
+## 💡 Hallazgo clave
+
+[Escribe aquí el dato o tendencia más importante que
+revela esta gráfica.]
+:::
+
+### 📊 Gráfica 2
+
+::: {.callout-note appearance="minimal" icon=false}
+## [Nombre de la Gráfica 2]
+
+<!--
+Descripción de la Gráfica 2 y su relevancia para el ODS 14.
+-->
+[Explica qué muestra la segunda gráfica, la tendencia
+principal y su relación con el ODS 14.]
+
+**Variables utilizadas:**
+
+- **[Variable 1]:** [Descripción breve]
+- **[Variable 2]:** [Descripción breve]
+- **Fuente:** [Origen de los datos]
+:::
+
+::: {.callout-important appearance="minimal" icon=false}
+## 💡 Hallazgo clave
+
+[Dato o tendencia más importante de la segunda gráfica.]
+:::
+
+### 🔵 Gráfica 3
+
+::: {.callout-note appearance="minimal" icon=false}
+## [Nombre de la Gráfica 3]
+
+<!--
+Descripción de la Gráfica 3 y su relevancia para el ODS 14.
+-->
+[Explica qué muestra la tercera gráfica, la tendencia
+principal y su relación con el ODS 14.]
+
+**Variables utilizadas:**
+
+- **[Variable 1]:** [Descripción breve]
+- **[Variable 2]:** [Descripción breve]
+- **Fuente:** [Origen de los datos]
+:::
+
+::: {.callout-important appearance="minimal" icon=false}
+## 💡 Hallazgo clave
+
+[Dato o tendencia más importante de la tercera gráfica.]
+:::
+
+:::
+
+# 🤖 Modelo Predictivo {.seccion}
+
+## Column {width="60%"}
 
 ::: {.callout-tip appearance="minimal" icon=false}
 ## 🤖 [Nombre de tu Modelo Predictivo]
@@ -349,7 +308,7 @@ htl.html`<div style="
 fig_modelo.show()
 ```
 
-### Column {width="40%"}
+## Column {width="40%"}
 
 ::: {.callout-note appearance="minimal" icon=false}
 ## 📐 Descripción del modelo
@@ -363,8 +322,8 @@ y por qué fue elegido para esta investigación.
 -->
 [Describe aquí el tipo de modelo estadístico o de
 machine learning que utilizaste. Explica su lógica,
-supuestos y por qué es adecuado para tus datos y
-para el ODS 14.]
+supuestos y por qué es adecuado para tus datos y para
+el ODS 14.]
 
 **Variables del modelo:**
 
@@ -406,24 +365,23 @@ marina y el ODS 14?]
 de tu modelo.]
 :::
 
-# 🏁 Conclusiones
+# 🏁 Conclusiones {.seccion}
 
-## Row {height="100%"}
-
-### Column {width="55%"}
+## Column {width="55%"}
 
 ```{python}
 #| label: grafica-conclusiones
 fig_conclu.show()
 ```
 
-### Column {width="45%"}
+## Column {width="45%"}
 
 ::: {.callout-note appearance="minimal" icon=false}
 ## 01 — [Conclusión 1]
 
 <!--
-Primer hallazgo principal. Conecta con el análisis exploratorio.
+Primer hallazgo principal de tu investigación.
+Conecta con el análisis exploratorio.
 -->
 [Describe aquí tu primera conclusión. Conecta con los
 datos que mostraste en el análisis exploratorio.]
