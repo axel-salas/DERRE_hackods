@@ -1,22 +1,12 @@
-project:
-  type: website
+ type: website
   output-dir: _site
 
 website:
   title: "[TÍTULO DE TU DASHBOARD]"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Inicio
-      - href: analisis.qmd
-        text: Análisis Exploratorio
-      - href: introduccion.qmd
-        text: Modelo Predictivo
 
 format:
   dashboard:
     scrolling: true
     orientation: columns
     theme:
-      - cosmo
       - custom.css
