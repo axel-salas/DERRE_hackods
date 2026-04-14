@@ -40,22 +40,22 @@ C_TEAL  = "#2A9D8F"
 #  Ejemplo: df = pd.read_csv("datos/mi_archivo.csv")
 # ═══════════════════════════════════════════════
 np.random.seed(42)
-ballenas = pd.read_csv('C:/Users/salas/Downloads/axel-salas DERRE_hackods main datos/ballenas/ballenas.csv')
+ballenas = pd.read_csv('../datos/ballenas/ballenas')
 ballenas.columns = ['año', 'poblacion registrada']
 ballenas['poblacion registrada']=ballenas['poblacion registrada'].str.replace(',', '').astype(float)
 ballenas['año']=pd.to_numeric(ballenas['año'])
 
 
-pelicanos=pd.read_csv('C:/Users/salas/Downloads/axel-salas DERRE_hackods main datos/pelícanos/pelicanos.csv').iloc[:22,:2]  
+pelicanos=pd.read_csv('../datos/pelicanos/pelicanos.csv').iloc[:22,:2]  
 
 pelicanos.columns = ['año', 'cantidad_nidos_pelicanos']
 pelicanos['año']=pelicanos['año'].astype(str)
 
-produccion_pesquera=pd.read_csv('C:/Users/salas/Downloads/axel-salas DERRE_hackods main datos/produccion_pesquera/produccion_pesquera.csv',header=None,names=['año','toneladas_pescadas'])
+produccion_pesquera=pd.read_csv('../datos/produccion_pesquera/produccion_pesquera.csv',header=None,names=['año','toneladas_pescadas'])
 produccion_pesquera['toneladas_pescadas']=produccion_pesquera['toneladas_pescadas'].str.replace(',', '').astype(float)
 produccion_pesquera['año']=produccion_pesquera['año'].astype(float)
 
-embarcaciones=pd.read_csv('C:/Users/salas/Downloads/axel-salas DERRE_hackods main datos/embarcaciones/total_embarcaciones.csv').iloc[:36]
+embarcaciones=pd.read_csv('../datos/embarcaciones/total_embarcaciones.csv').iloc[:36]
 embarcaciones['total_embarcaciones']=embarcaciones['total_embarcaciones'].str.replace(',', '').astype(float)
 embarcaciones['año']=pd.to_numeric(embarcaciones['año'])   
 
