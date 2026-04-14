@@ -52,14 +52,15 @@ _layout = dict(
 )
 
 ```
+<!--
 # ═══════════════════════════════════════════════
 #  GRÁFICA 1
 #  TODO: pega aquí el código de tu primera figura
 # ═══════════════════════════════════════════════
 
 
-```
-<!--
+
+
 # ═══════════════════════════════════════════════
 #  GRÁFICA 2
 #  TODO: pega aquí el código de tu segunda figura
