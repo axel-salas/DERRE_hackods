@@ -551,7 +551,7 @@ display(crear_fig_embarcaciones(embarcaciones))
 ```
 
 :::
-
+:::
 ## Column {width="30%"}
 
 ::: {.intro-hero}
@@ -628,7 +628,8 @@ Esta es la paradoja central: a mayor extracción, menor biomasa silvestre observ
 
 [Dato o tendencia más importante de la tercera gráfica.]
 :::
-
+:::
+:::
 
 #  Modelo Predictivo {.seccion}
 
@@ -981,7 +982,7 @@ fig_H.show()
 # fig_P.show()
 ```
 :::
-
+:::
 
 
 ## Column {width="40%"}
