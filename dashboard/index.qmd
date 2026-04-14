@@ -122,7 +122,7 @@ Evolucion historica de nuestros indicadores.
 
 ::: {.panel-tabset .tabset-ocean}
 
-###  [Ballenas]
+####  Ballenas
 
 ```{python}
 #| label: grafica-1
@@ -233,7 +233,7 @@ crear_fig(ballenas)
 ```
 
 
-###  [Pelicanos]
+####  Pelicanos
 ```{python}
 from IPython.display import display
 import plotly.graph_objects as go
@@ -338,7 +338,7 @@ def crear_fig_pelicanos(pelicanos):
 display(crear_fig_pelicanos(pelicanos))
 ```
 
-###  [Produccion pesquera]
+####  Produccion pesquera
 ```{python}
 from IPython.display import display
 import plotly.graph_objects as go
@@ -448,7 +448,7 @@ def crear_fig_pesca(produccion_pesquera):
 display(crear_fig_pesca(produccion_pesquera))
 ```
 
-###  [Número de Embarcaciones]
+#### Número de Embarcaciones
 ```{python}
 from IPython.display import display
 import plotly.graph_objects as go
