@@ -3,7 +3,48 @@
  * Coloca este archivo en la misma carpeta que tu .qmd
  */
 
+/*-- scss:defaults --*/
+
 /*-- scss:rules --*/
+
+/* ── Google Fonts: Inter + Playfair Display ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+/* ── Fuente base del dashboard ── */
+body, .dashboard-body, .quarto-dashboard {
+  font-family: 'Inter', sans-serif !important;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif !important;
+}
+
+h4, h5, h6, p, li, .card-title {
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* ── Value Boxes ── */
+.valuebox {
+  border-radius: 10px !important;
+  padding: 1rem 1.2rem !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.valuebox-value {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  font-family: 'Inter', sans-serif !important;
+  letter-spacing: -0.03em;
+}
+
+.valuebox-title {
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.88;
+  font-family: 'Inter', sans-serif !important;
+}
 
 /* ── Variables de color: Mar de Cortés ───────────────────────── */
 :root {
