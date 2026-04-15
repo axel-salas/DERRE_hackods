@@ -382,6 +382,7 @@ dict(color="info", value="± 0.26", icon="cloud-haze")
 #| component: valuebox
 #| title: "ε_P: Variabilidad humana"
 dict(color="secondary", value="± 0.19", icon="people")
+```
 
 ::: {.callout-note appearance="minimal" icon=false}
 ¿Cómo funciona nuestra gráfica?
