@@ -323,10 +323,10 @@ Aunque el ajuste histórico no es perfecto (como es común en sistemas ecológic
 Antes de proponer soluciones, es necesario entender cómo se relaciona la actividad humana con la biodiversidad en Baja California. Para ello, formulamos el siguiente modelo:
 
 **Evolución de la biodiversidad marina (Presa):**
-$$H_{t+1} = H_t \exp\left(r \left(1 - \frac{H_t}{K}\right) - a P_t\right) + \varepsilon_H$$
+$$H_{t+1} = H_t \exp\left(r \left(1 - {H_t}\right) - a P_t\right) + \varepsilon_H$$
 
 **Evolución de la Flota (Depredador):**
-$$P_{t+1} = P_t \exp\left(f \left(1 - \frac{P_t}{C}\right)\right) + \varepsilon_P$$
+$$P_{t+1} = P_t \exp\left(f \left(1 - {P_t}\right)\right) + \varepsilon_P$$
 
 El núcleo de la simulación se basa en un sistema de ecuaciones en diferencias finitas, específicamente una variante discreta inspirada en modelos tipo Ricker acoplados en un sistema depredador–presa.
 :::
