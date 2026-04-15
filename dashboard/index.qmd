@@ -29,46 +29,38 @@ Este dashboard analiza cómo la actividad humana y fenómenos climáticos afecta
 ### ¿Qué encontrarás en este análisis?
 :::
 
-## Row
+## Row {height="auto"}
 
 ### {width="100%"}
 
-::: {.grid}
+::: {.grid-container}
 
-::: {.g-col-12 .g-col-md-6}
 ::: {.callout-note .card-navigation appearance="simple"}
 ## 📖 Introducción
 Explora el contexto general del proyecto y la importancia del área de estudio.
 
 [Ir a Introducción](introduccion.qmd){.btn .btn-outline-secondary .mt-3 .w-100}
 :::
-:::
 
-::: {.g-col-12 .g-col-md-6}
 ::: {.callout-note .card-navigation appearance="simple"}
 ## 🔎 Análisis Exploratorio
 Visualización de patrones históricos de ballenas, pelícanos y producción pesquera.
 
 [Ir a Análisis](analisis.qmd){.btn .btn-outline-primary .mt-3 .w-100}
 :::
-:::
 
-::: {.g-col-12 .g-col-md-6}
 ::: {.callout-note .card-navigation appearance="simple"}
 ## 🔮 Modelo Predictivo
 Simulación de escenarios futuros basados en el modelo de Ricker.
 
 [Ir a Modelo](modelo.qmd){.btn .btn-outline-success .mt-3 .w-100}
 :::
-:::
 
-::: {.g-col-12 .g-col-md-6}
 ::: {.callout-note .card-navigation appearance="simple"}
 ## 🗺️ Escenarios a futuro
 Análisis de riesgos y recomendaciones estratégicas para la conservación.
 
 [Ir a Escenarios](escenarios.qmd){.btn .btn-outline-secondary .mt-3 .w-100}
-:::
 :::
 
 :::
