@@ -68,6 +68,20 @@ body {
     color: #888;
 }
 
+/* ─── COLOR DE TÍTULOS ─── */
+
+/* Título principal del Hero (h1) */
+.hero-card h1 {
+    color: #ffffff !important;
+}
+
+/* Títulos de las tarjetas de navegación (h2) */
+.card-navigation h2 {
+    color: #ffffff !important; /* Puedes cambiarlo a #1DB38A si prefieres que destaquen en verde */
+    font-size: 1.5rem; /* Ajuste opcional para que no se vean gigantes */
+    margin-bottom: 15px;
+}
+
 /* ===== TITULOS ===== */
 h1 {
   font-size: 2.5rem;
