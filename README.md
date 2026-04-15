@@ -58,3 +58,49 @@ En conjunto, estos datos permiten analizar la interacción entre actividad econ�
 Todos nuestros datos fueron obtenidos a través de la plataforma oficial de la SEMARNAT (https://www.gob.mx/semarnat), la cual concentra información estadística ambiental generada en colaboración con instituciones como CONANP y CONAPESCA.
 
 Esta plataforma garantiza la confiabilidad de los datos, ya que provienen de monitoreos sistemáticos, anuarios estadísticos y programas oficiales de seguimiento de biodiversidad y actividad pesquera en México, lo que permite su uso para análisis consistentes y alineados con el ODS 14.
+
+---
+## Instrucciones de Ejecución
+
+Este repositorio contiene un dashboard desarrollado con Quarto. El proyecto está configurado para desplegarse automáticamente en GitHub Pages mediante un workflow, pero también puede ejecutarse localmente siguiendo los pasos a continuación.
+
+Requisitos
+
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
+
+Python 3.12
+Quarto (versión 1.6.0 o compatible)
+uv
+
+Ejecución en local
+Clonar el repositorio:
+git clone <URL-del-repositorio>
+cd <nombre-del-repositorio>/dashboard
+Instalar dependencias de Python:
+pip uv install jupyter nbformat pandas matplotlib plotly
+Renderizar el dashboard:
+quarto render
+
+Esto generará los archivos estáticos en la carpeta :  (puede tardar varios minutos)
+
+dashboard/_site/
+Visualización del dashboard
+
+Puedes visualizar el dashboard de dos formas:
+
+Opción 1
+
+quarto preview
+
+Opción 2
+
+Abrir manualmente el archivo:
+
+dashboard/_site/index.html
+
+Notas importantes
+
+El proyecto se renderiza dentro de la carpeta dashboard/, tal como está configurado en el workflow.
+Todas las dependencias necesarias están especificadas explícitamente para asegurar reproducibilidad.
+El resultado final es un sitio estático, compatible con GitHub Pages.
+No se requieren configuraciones adicionales ni variables de ento
