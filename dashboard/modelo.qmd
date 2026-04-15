@@ -39,8 +39,7 @@ AÑOS     = np.arange(AÑO_INI, AÑO_INI + T_PROJ)
 N_HIST   = len(H_OBS)
 N_SIMS   = 200
 
-# ── NUEVOS GRIDS (Incluyendo casos de Explotación > 1.0) ──
-# 10 valores para A x 10 para F x 7 para YR = 700 combinaciones
+# ── NUEVOS GRIDS ──
 GRID_A  = np.array([0.20, 0.40, 0.60, 0.80, 1.00, 1.20, 1.40, 1.60, 1.80, 2.00])
 GRID_F  = np.array([0.20, 0.40, 0.60, 0.80, 1.00, 1.20, 1.40, 1.60, 1.80, 2.00])
 GRID_YR = np.array([2025, 2027, 2030, 2032, 2035, 2037, 2040])
@@ -135,7 +134,7 @@ def monte_carlo(año_interv, factor_a, factor_f, seed=42):
     }
 
 
-# ── 3. PRE-CÓMPUTO DE TODAS LAS COMBINACIONES ────────────────────────────────
+# ── 3. PRE-CÓMPUTO ────────────────────────────────────────────────────────────
 
 CACHE = {}
 total = len(GRID_A) * len(GRID_F) * len(GRID_YR)
@@ -153,7 +152,7 @@ for fa in GRID_A:
 print("\nPre-cómputo completado.")
 
 
-# ── 4. CONSTRUCCIÓN DE FIGURAS CON SLIDERS ────────────────────────────────────
+# ── 4. CONSTRUCCIÓN DE FIGURAS ────────────────────────────────────────────────
 
 AÑOS_STR    = [str(a) for a in AÑOS]
 AÑOS_OBS    = list(AÑOS[:N_HIST])
@@ -177,7 +176,6 @@ def construir_figura(variable='H'):
                  else 'P — Flota pesquera (depredador)')
     ytit     = 'H normalizado' if es_H else 'P normalizado'
 
-    # Combinación inicial base (1.0 = Índice 4 en el nuevo Grid, Año 2030)
     IDX_BASE = 4
     fa0, ff0, yr0 = GRID_A[IDX_BASE], GRID_F[IDX_BASE], 2030
     key0 = (fa0, ff0, yr0)
@@ -192,7 +190,6 @@ def construir_figura(variable='H'):
 
     fig = go.Figure()
 
-    # Traces fijos
     fig.add_trace(go.Scatter(
         x=AÑOS_OBS, y=list(obs_data),
         mode='markers',
@@ -201,19 +198,6 @@ def construir_figura(variable='H'):
         hovertemplate='Año: %{x}<br>Valor: %{y:.3f}<extra></extra>',
     ))
 
-    # Bandas y medianas
-    """"
-    fig.add_trace(go.Scatter(
-        x=band_x, y=band_y(d0, di),
-        fill='toself', fillcolor=_hex_rgba(col_iner, 0.10),
-        line=dict(color='rgba(0,0,0,0)'), showlegend=False, name='_band_iner', hoverinfo='skip',
-    ))
-    fig.add_trace(go.Scatter(
-        x=band_x, y=band_y(d0, dk),
-        fill='toself', fillcolor=_hex_rgba(col_cons, 0.15),
-        line=dict(color='rgba(0,0,0,0)'), showlegend=False, name='_band_cons', hoverinfo='skip',
-    ))
-    """
     fig.add_trace(go.Scatter(
         x=AÑOS_FULL, y=list(d0[di]['med']),
         mode='lines', line=dict(color=col_iner, width=2, dash='dash'),
@@ -225,7 +209,6 @@ def construir_figura(variable='H'):
         name='Escenario proyectado', hovertemplate='Año: %{x}<br>%{y:.3f}<extra>Proyección</extra>',
     ))
 
-    # Línea vertical de intervención
     fig.add_vline(
         x=yr0, line=dict(color='rgba(220,220,220,0.55)', width=1.5, dash='dot'),
         annotation=dict(text='Año de intervención', font=dict(color=COLORES['text'], size=10),
@@ -239,7 +222,6 @@ def construir_figura(variable='H'):
         return (f"Proyectado: {hc_fin:.3f} | Inercial: {hi_fin:.3f} "
                 f"| Diferencia: {'+' if g>=0 else ''}{g:.1f}%")
 
-    # Frames
     frames = []
     for fa in GRID_A:
         for ff in GRID_F:
@@ -250,8 +232,6 @@ def construir_figura(variable='H'):
                     name=f"{fa:.2f}_{ff:.2f}_{yr}",
                     data=[
                         go.Scatter(x=AÑOS_OBS, y=list(obs_data)),
-                        #go.Scatter(x=band_x, y=band_y(d, di)),
-                        #go.Scatter(x=band_x, y=band_y(d, dk)),
                         go.Scatter(x=AÑOS_FULL, y=list(d[di]['med'])),
                         go.Scatter(x=AÑOS_FULL, y=list(d[dk]['med'])),
                     ],
@@ -266,7 +246,6 @@ def construir_figura(variable='H'):
                 ))
     fig.frames = frames
 
-    # ── SLIDERS (Ahora separados verticalmente) ──
     sliders = [
         dict(
             active=IDX_BASE,
@@ -275,7 +254,7 @@ def construir_figura(variable='H'):
                               dict(mode='immediate', frame=dict(duration=0, redraw=True), transition=dict(duration=0))],
                         label=f'{int(fa*100)}%') for fa in GRID_A],
             currentvalue=dict(prefix='Factor presión pesquera (a): ', font=dict(color=COLORES['text'], size=11), xanchor='left'),
-            pad=dict(t=10), len=0.88, x=0.06, y=-0.15, # Movido abajo
+            pad=dict(t=10), len=0.88, x=0.06, y=-0.15,
             bgcolor=COLORES['ax'], bordercolor=COLORES['grid'], tickcolor=COLORES['text'], font=dict(color=COLORES['text'], size=10),
         ),
         dict(
@@ -285,7 +264,7 @@ def construir_figura(variable='H'):
                               dict(mode='immediate', frame=dict(duration=0, redraw=True), transition=dict(duration=0))],
                         label=f'{int(ff*100)}%') for ff in GRID_F],
             currentvalue=dict(prefix='Factor crec. flota (f): ', font=dict(color=COLORES['text'], size=11), xanchor='left'),
-            pad=dict(t=10), len=0.88, x=0.06, y=-0.35, # Movido abajo
+            pad=dict(t=10), len=0.88, x=0.06, y=-0.35,
             bgcolor=COLORES['ax'], bordercolor=COLORES['grid'], tickcolor=COLORES['text'], font=dict(color=COLORES['text'], size=10),
         ),
         dict(
@@ -295,20 +274,18 @@ def construir_figura(variable='H'):
                               dict(mode='immediate', frame=dict(duration=0, redraw=True), transition=dict(duration=0))],
                         label=str(int(yr))) for yr in GRID_YR],
             currentvalue=dict(prefix='Año de intervención: ', font=dict(color=COLORES['text'], size=11), xanchor='left'),
-            pad=dict(t=10), len=0.88, x=0.06, y=-0.55, # Movido abajo
+            pad=dict(t=10), len=0.88, x=0.06, y=-0.55,
             bgcolor=COLORES['ax'], bordercolor=COLORES['grid'], tickcolor=COLORES['text'], font=dict(color=COLORES['text'], size=10),
         ),
     ]
 
-    # Layout
     fig.update_layout(
         title=dict(text=titulo, font=dict(color=COLORES['text'], size=16), x=0.5, xanchor='center'),
         plot_bgcolor=COLORES['ax'], paper_bgcolor=COLORES['bg'],
-        font=dict(color=COLORES['text'], family='Arial, sans-serif'),
+        font=dict(color=COLORES['text'], family='Inter, Arial, sans-serif'),
         xaxis=dict(title='Año', tickfont=dict(color=COLORES['text'], size=10), gridcolor=COLORES['grid'], linecolor=COLORES['grid'], range=[AÑO_INI - 1, AÑO_INI + T_PROJ]),
         yaxis=dict(title=ytit, tickfont=dict(color=COLORES['text'], size=10), gridcolor=COLORES['grid'], linecolor=COLORES['grid'], rangemode='nonnegative'),
         legend=dict(bgcolor='rgba(26,29,39,0.85)', bordercolor=COLORES['grid'], font=dict(color=COLORES['text'], size=11), orientation='h', y=1.08, x=0.0),
-        # AUMENTAMOS EL MARGEN INFERIOR PARA QUE QUEPAN LOS SLIDERS
         margin=dict(t=100, b=280, l=60, r=40),
         sliders=sliders,
         height=750,
@@ -317,15 +294,17 @@ def construir_figura(variable='H'):
 
     return fig
 ```
-#  Modelo Predictivo
 
-## Row
+# Modelo Predictivo
+
+## Row {height="45%"}
+
 ### Column {width="40%"}
 
 ::: {.callout-note appearance="minimal" icon=false}
-##  ¿Cómo responderemos a nuestra pregunta?
+## ¿Cómo responderemos a nuestra pregunta?
 
-::: {style="font-size: 1.15em; margin-left: 15px;"}
+::: {style="font-size: 1.05em; margin-left: 15px;"}
 Para comprender no solo qué está ocurriendo, sino también la capacidad de resistencia del ecosistema, utilizamos un modelo dinámico basado en Lotka-Volterra y Ricker. Este tipo de modelos permite describir las interacciones entre especies, tales como: depredador–presa adaptado a este caso.
 
 Definimos dos variables:
@@ -345,9 +324,9 @@ Aunque el ajuste histórico no es perfecto (como es común en sistemas ecológic
 :::
 
 ::: {.callout-note appearance="minimal" icon=false}
-##  Modelo utilizado
+## Modelo utilizado
 
-::: {style="font-size: 1.15em; margin-left: 15px;"}
+::: {style="font-size: 1.05em; margin-left: 15px;"}
 Antes de proponer soluciones, es necesario entender cómo se relaciona la actividad humana con la biodiversidad en Baja California. Para ello, formulamos el siguiente modelo:
 
 **Evolución de la biodiversidad marina (Presa):**
@@ -356,37 +335,66 @@ $$H_{t+1} = H_t \exp\left(r \left(1 - \frac{H_t}{K}\right) - a P_t\right) + \var
 **Evolución de la Flota (Depredador):**
 $$P_{t+1} = P_t \exp\left(f \left(1 - \frac{P_t}{C}\right)\right) + \varepsilon_P$$
 
-El núcleo de la simulación se basa en un sistema de ecuaciones en diferencias finitas, específicamente una variante discreta inspirada en modelos tipo Ricker acoplados en un sistema depredador–presa. 
+El núcleo de la simulación se basa en un sistema de ecuaciones en diferencias finitas, específicamente una variante discreta inspirada en modelos tipo Ricker acoplados en un sistema depredador–presa.
 :::
 :::
 
-### Row
+### Column {width="60%" .tabset}
+
+#### Dinámica de la Biodiversidad Marina (H)
+
+```{python}
+#| title: "Evolución de la Biodiversidad Marina (H)"
+fig_H = construir_figura('H')
+fig_H.show()
+```
+
+#### Esfuerzo de la Flota Pesquera (P)
+
+```{python}
+#| title: "Evolución de la Capacidad de Captura"
+fig_P = construir_figura('P')
+fig_P.show()
+```
+
+## Row {height="20%"}
 
 ```{python}
 #| component: valuebox
 #| title: "r: Tasa de crecimiento"
-dict(color="blue", value="1.15", icon="moisture")
+dict(color="primary", value="1.15", icon="graph-up-arrow")
+```
 
+```{python}
 #| component: valuebox
 #| title: "a: Tasa de depredación"
 dict(color="danger", value="2.04", icon="exclamation-triangle")
+```
 
+```{python}
 #| component: valuebox
 #| title: "f: Crecimiento flota"
-dict(color="warning", value="0.04", icon="graph-up")
+dict(color="warning", value="0.04", icon="bar-chart")
+```
 
+```{python}
 #| component: valuebox
 #| title: "ε_H: Anomalías ambientales"
-dict(color="info", value="± 0.26", icon="cloud-haze")
+dict(color="info", value="± 0.26", icon="cloud")
+```
 
+```{python}
 #| component: valuebox
 #| title: "ε_P: Variabilidad humana"
 dict(color="secondary", value="± 0.19", icon="people")
 ```
 
+## Row {height="35%"}
+
 ::: {.callout-note appearance="minimal" icon=false}
-¿Cómo funciona nuestra gráfica?
-::: {style="font-size: 1.15em; margin-left: 15px;"}
+**¿Cómo funciona nuestra gráfica?**
+
+::: {style="font-size: 1.05em; margin-left: 15px;"}
 El modelo nos permite hacer algo que los datos históricos solos no pueden: explorar escenarios de intervención. Los sliders a continuación te permiten ajustar dos parámetros de política pública y un horizonte temporal.
 
 ¿Qué puedes controlar?
@@ -398,24 +406,4 @@ El modelo nos permite hacer algo que los datos históricos solos no pueden: expl
 * **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
 :::
 :::
-### Column {width="60%" .tabset}
 
-####  Dinámica de la Biodiversidad Marina (H)
-
-```{python}
-#| title: "Evolución de la Biodiversidad Marina (H) "
-# Generamos y mostramos la figura H
-fig_H = construir_figura('H')
-display(fig_H)
-```
-
-####  Esfuerzo de la Flota Pesquera (P)
-
-```{python}
-#| title: "Evolución de la Capacidad de Captura"
-# Generamos y mostramos la figura P
-fig_P = construir_figura('P')
-display(fig_P)
-```
-
-:::
