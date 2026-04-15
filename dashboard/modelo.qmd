@@ -297,12 +297,9 @@ def construir_figura(variable='H'):
 
     return fig
 ```
-
 # Modelo Predictivo
 
-## Row {height="45%"}
-
-### Column {width="40%"}
+## Row
 
 ::: {.callout-note appearance="minimal" icon=false}
 ## ¿Cómo responderemos a nuestra pregunta?
@@ -342,24 +339,6 @@ El núcleo de la simulación se basa en un sistema de ecuaciones en diferencias 
 :::
 :::
 
-### Column {width="60%" .tabset}
-
-#### Dinámica de la Biodiversidad Marina (H)
-
-```{python}
-#| title: "Evolución de la Biodiversidad Marina (H)"
-fig_H = construir_figura('H')
-fig_H.show()
-```
-
-#### Esfuerzo de la Flota Pesquera (P)
-
-```{python}
-#| title: "Evolución de la Capacidad de Captura"
-fig_P = construir_figura('P')
-fig_P.show()
-```
-
 ## Row {height="20%"}
 
 ```{python}
@@ -392,10 +371,30 @@ dict(color="info", value="± 0.26", icon="cloud")
 dict(color="secondary", value="± 0.19", icon="people")
 ```
 
-## Row {height="35%"}
+## Row
+
+### Column {width="60%" .tabset}
+
+#### Dinámica de la Biodiversidad Marina (H)
+
+```{python}
+#| title: "Evolución de la Biodiversidad Marina (H)"
+fig_H = construir_figura('H')
+fig_H.show()
+```
+
+#### Esfuerzo de la Flota Pesquera (P)
+
+```{python}
+#| title: "Evolución de la Capacidad de Captura"
+fig_P = construir_figura('P')
+fig_P.show()
+```
+
+### Column {width="40%"}
 
 ::: {.callout-note appearance="minimal" icon=false}
-**¿Cómo funciona nuestra gráfica?**
+## ¿Cómo funciona nuestra gráfica?
 
 ::: {style="font-size: 1.05em; margin-left: 15px;"}
 El modelo nos permite hacer algo que los datos históricos solos no pueden: explorar escenarios de intervención. Los sliders a continuación te permiten ajustar dos parámetros de política pública y un horizonte temporal.
@@ -409,8 +408,3 @@ El modelo nos permite hacer algo que los datos históricos solos no pueden: expl
 * **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
 :::
 :::
-
-* **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
-:::
-:::
-
