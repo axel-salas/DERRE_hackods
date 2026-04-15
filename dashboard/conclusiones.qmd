@@ -16,7 +16,7 @@ import numpy as np
 # ═══════════════════════════════════════════════
 
 # LOBOS MARINOS
-lobos_marinos=pd.read_csv('lobos_marinos.csv').iloc[:17]
+lobos_marinos=pd.read_csv('../datos/lobos_marinos/lobos_marinos.csv').iloc[:17]
 lobos_marinos['total_lobos_marinos']=lobos_marinos['total_lobos_marinos'].str.replace(',', '').astype(float)
 
 # ═══════════════════════════════════════════════
