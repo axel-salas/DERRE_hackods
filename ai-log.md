@@ -22,7 +22,7 @@ Se explica cuál fue la prompt y en caso de que haya sido lo suficientemente sig
 
 **Decisión**: El código ya funcionaba y no hicimos mayor modificación. 
 
-## 03-25
+### 03-25
 **Tarea**: 
 Preguntamos a Gemini con su función de buscar por libros de ecología/biología matemática para obtener referencias y comenzar a formular el modelo. 
 
