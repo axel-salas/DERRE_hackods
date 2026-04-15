@@ -320,13 +320,89 @@ def construir_figura(variable='H'):
 #  Modelo Predictivo
 
 ## Row
+### Column {width="40%"}
 
-### Column {width="60%" .tabset}
+::: {.callout-note appearance="minimal" icon=false}
+##  ¿Cómo responderemos a nuestra pregunta?
 
-####  Dinámica de la Biodiversidad (H)
+::: {style="font-size: 1.15em; margin-left: 15px;"}
+Para comprender no solo qué está ocurriendo, sino también la capacidad de resistencia del ecosistema, utilizamos un modelo dinámico basado en Lotka-Volterra y Ricker. Este tipo de modelos permite describir las interacciones entre especies, tales como: depredador–presa adaptado a este caso.
+
+Definimos dos variables:
+
+* **H(t): biodiversidad marina** (salud del ecosistema).
+* **P(t): presión pesquera** (impacto humano).
+
+Ambas siguen un crecimiento con límite natural. Sin embargo:
+
+* La pesca crece de forma casi independiente.
+* La biodiversidad disminuye conforme aumenta la presión pesquera.
+
+El modelo describe esta interacción y añade ruido para capturar variaciones climáticas y de datos.
+
+Aunque el ajuste histórico no es perfecto (como es común en sistemas ecológicos), el objetivo no es predecir exactamente, sino entender tendencias, riesgos y posibles escenarios futuros. Por eso, los resultados se muestran con incertidumbre incluida.
+:::
+:::
+
+::: {.callout-note appearance="minimal" icon=false}
+##  Modelo utilizado
+
+::: {style="font-size: 1.15em; margin-left: 15px;"}
+Antes de proponer soluciones, es necesario entender cómo se relaciona la actividad humana con la biodiversidad en Baja California. Para ello, formulamos el siguiente modelo:
+
+**Evolución de la biodiversidad marina (Presa):**
+$$H_{t+1} = H_t \exp\left(r \left(1 - \frac{H_t}{K}\right) - a P_t\right) + \varepsilon_H$$
+
+**Evolución de la Flota (Depredador):**
+$$P_{t+1} = P_t \exp\left(f \left(1 - \frac{P_t}{C}\right)\right) + \varepsilon_P$$
+
+El núcleo de la simulación se basa en un sistema de ecuaciones en diferencias finitas, específicamente una variante discreta inspirada en modelos tipo Ricker acoplados en un sistema depredador–presa. 
+:::
+:::
+
+### Row
 
 ```{python}
-#| title: "Evolución de la Biomasa Marina"
+#| component: valuebox
+#| title: "r: Tasa de crecimiento"
+dict(color="blue", value="1.15", icon="moisture")
+
+#| component: valuebox
+#| title: "a: Tasa de depredación"
+dict(color="danger", value="2.04", icon="exclamation-triangle")
+
+#| component: valuebox
+#| title: "f: Crecimiento flota"
+dict(color="warning", value="0.04", icon="graph-up")
+
+#| component: valuebox
+#| title: "ε_H: Anomalías ambientales"
+dict(color="info", value="± 0.26", icon="cloud-haze")
+
+#| component: valuebox
+#| title: "ε_P: Variabilidad humana"
+dict(color="secondary", value="± 0.19", icon="people")
+
+::: {.callout-note appearance="minimal" icon=false}
+¿Cómo funciona nuestra gráfica?
+::: {style="font-size: 1.15em; margin-left: 15px;"}
+El modelo nos permite hacer algo que los datos históricos solos no pueden: explorar escenarios de intervención. Los sliders a continuación te permiten ajustar dos parámetros de política pública y un horizonte temporal.
+
+¿Qué puedes controlar?
+
+* **Factor de reducción de la presión pesquera (a):** Permite modelar escenarios en los que se modifica la presión pesquera. Simula la implementación de regulaciones o el aumento desmedido de la pesca.
+
+* **Factor de reducción del crecimiento de la flota (f):** Permite modelar escenarios en los que se controla el crecimiento de la flota. Simula la implementación de políticas que limitan la expansión de embarcaciones o el aumento acelerado de la flota.
+
+* **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
+:::
+:::
+### Column {width="60%" .tabset}
+
+####  Dinámica de la Biodiversidad Marina (H)
+
+```{python}
+#| title: "Evolución de la Biodiversidad Marina (H) "
 # Generamos y mostramos la figura H
 fig_H = construir_figura('H')
 display(fig_H)
@@ -341,35 +417,4 @@ fig_P = construir_figura('P')
 display(fig_P)
 ```
 
-### Column {width="40%"}
-
-::: {.callout-note appearance="minimal" icon=false}
-##  Descripción del modelo
-Para entender no solo qué está pasando, sino cuánto puede resistir el ecosistema, usamos un modelo dinámico basado en Lotka-Volterra y Ricker, adaptado a este caso.
-
-Definimos dos variables:
-
-- **H(t): biodiversidad marina** (salud del ecosistema).
-- **P(t): presión pesquera** (impacto humano).
-
-Ambas siguen un crecimiento con límite natural. Sin embargo:
-La pesca crece de forma casi independiente.
-La biodiversidad disminuye conforme aumenta la presión pesquera.
-
-El modelo describe esta interacción y añade ruido para capturar variaciones climáticas y de datos.
-
-Aunque el ajuste histórico no es perfecto (como es común en sistemas ecológicos), el objetivo no es predecir exactamente, sino entender tendencias, riesgos y posibles escenarios futuros. Por eso, los resultados se muestran con incertidumbre incluida.
-:::
-
-::: {.callout-note appearance="minimal" icon=false}
-## 🎛️ Explorador de Escenarios
-El modelo nos permite hacer algo que los datos históricos solos no pueden: explorar escenarios de intervención. Los sliders a continuación te permiten ajustar dos parámetros de política pública y un horizonte temporal.
-
-**¿Qué puedes controlar?**
-
-- **Factor de reducción de la presión pesquera (a):** Simula regulaciones que limiten la captura total permitida: vedas, cuotas, zonas de exclusión. Un valor del 30% significa que la presión baja a una tercera parte de su nivel actual.
-
-- **Factor de reducción del crecimiento de la flota (f):** Simula políticas que frenen la expansión de embarcaciones: moratorias de registro, retiro de permisos, incentivos de reconversión. Un valor del 30% significa que la flota deja de crecer y empieza a contraerse.
-
-- **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
 :::
