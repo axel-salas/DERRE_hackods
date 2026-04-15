@@ -5,7 +5,7 @@
 - Gemini
 
 ## Filosfía de uso
-Nuestro uso de IA fue enfocado a debuggear el código. Si el código tenía algún error, más que nada porque usamos varias herramientas nuevas, nos apoyamos de las herramientas de inteligencia artificial para encontrar los errores más rápido y ser más eficientes. El modelado matemático y todas las decisiones técnicas respecto a éste fueron tomadas por nosotros basándonos en bibliografía de ecología matemática y nuestro propio conocimiento del área. La narrativa también fue hecha por nosotros, buscando desde un principio ir un poco más allá de lo cualitativo y exploratorio a través de predicciones hechas por un modelo. Todo lo que tenía que ver selección de datos lo realizamos nosotros pues era muy importante comprender todo el contexto geográfico y ecológico y a partir de ello seleccionar correctamente los indicadores. Además de debuggear el código, utilizamos IA para explorar distintas opciones de métodos MCMC que están disponibles en la librería PyMC de inferencia bayesiana en Python, sin embargo, investigamos los métodos MCMC y nos asegurábamos de entenderlos tanto matemáticamente como a sus ventajas y desventajas para ser nosotros quiénes tomaramos la decisión final respecto a los detalles técnicos del método MCMC (utilizado para recuperar los parámetros del modelo propuesto). En resumen, los detalles matemáticos del modelo, la selección de los datos, la estructura de las simulaciones del modelo, las decisiones narrativas fueron hechas por nosotros. 
+Nuestro uso de IA fue enfocado a debuggear el código. Si el código tenía algún error, más que nada porque usamos varias herramientas nuevas, nos apoyamos de las herramientas de inteligencia artificial para encontrar los errores más rápido y ser más eficientes. El modelado matemático y todas las decisiones técnicas respecto a éste fueron tomadas por nosotros basándonos en bibliografía de ecología matemática y nuestro propio conocimiento del área. La narrativa también fue hecha por nosotros, buscando desde un principio ir un poco más allá de lo cualitativo y exploratorio a través de predicciones hechas por un modelo. Todo lo que tenía que ver con selección de los datasets lo realizamos nosotros pues era muy importante comprender todo el contexto geográfico y ecológico y a partir de ello seleccionar correctamente los indicadores. Además de debuggear el código, utilizamos IA para explorar distintas opciones de métodos MCMC que están disponibles en la librería PyMC de inferencia bayesiana en Python, sin embargo, investigamos los métodos MCMC y nos asegurábamos de entenderlos tanto matemáticamente como a sus ventajas y desventajas para ser nosotros quiénes tomaramos la decisión final respecto a los detalles técnicos del método MCMC (utilizado para recuperar los parámetros del modelo propuesto). En resumen, los detalles matemáticos del modelo, la selección de los datos, la estructura de las simulaciones del modelo, las decisiones narrativas fueron hechas por nosotros. 
 
 ## Registro de uso 
 Se explica cuál fue la prompt y en caso de que haya sido lo suficientemente significante se añade una descripción de la decisión tomada respecto a la respuesta de la IA. 
@@ -31,12 +31,12 @@ Preguntamos a Gemini con su función de buscar por libros de ecología/biología
 ### 03-27
 **Tarea**: Se utilizó Claude para sugerir otros métodos numéricos para ajustar el modelo (al principio no intentamos usar métodos de MCMC) 
 
-**Prompt**: Estos son los datos de la simulación
+**Prompt**: "Estos son los datos de la simulación
 ParámetroValorDescripciónr0.2556Tasa crecimiento presaK1.0000Cap. de carga presa [fijo]a4.8606Tasa de ataqueh5.0000Handling timee0.2032Eficiencia conversiónm0.0100Mortalidad depredadorf0.0100Crecimiento autónomo flotaC1.0000Cap. de carga flota [fijo]
 Métricas de Bondad de Ajuste
 MétricaValorDescripción$R^2$ H0.1828Bondad ajuste presa$R^2$ P0.3636Bondad ajuste depredadorRMSE H0.2390Error cuadrático medio presaRMSE P0.1844Error cuadrático medio depredador
 
-Los errores cuadráticos aún son muy bajos, que otros métodos hay diponsibles en SciPy que podríamos utilizar para conseguir un mejor ajuste 
+Los errores cuadráticos aún son muy bajos, que otros métodos hay diponsibles en SciPy que podríamos utilizar para conseguir un mejor ajuste"
 
 **Decisión**: Nos propuso utilizar el método de differential evolution para obtener una mejor convergencia pues el método del descenso del gradiente Adam no nos convenció. Lo probamos y no fue muy eficiente por el ruido de los datos, así que mejor optamos por un método probabilístico para obtener intervalos de confianza y tener más certeza del ajuste del modelo 
 
