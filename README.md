@@ -15,10 +15,6 @@
   
 Se eligió este ODS porque nuestro análisis se centra en evaluar la sostenibilidad del uso de los recursos marinos en Baja California. A partir de datos de actividad pesquera y biodiversidad, buscamos entender si la presión humana está afectando la salud del ecosistema y su capacidad de recuperación, lo cual es un objetivo central del ODS 14.
 
--**[ODS 9] - [Industria, Innovación e Infraestructura]**
-  
-  (porque se escogio) es viendo
-
 ---
 
 ## Descripción del proyecto 
@@ -58,6 +54,8 @@ En conjunto, estos datos permiten analizar la interacción entre actividad econ�
 Todos nuestros datos fueron obtenidos a través de la plataforma oficial de la SEMARNAT (https://www.gob.mx/semarnat), la cual concentra información estadística ambiental generada en colaboración con instituciones como CONANP y CONAPESCA.
 
 Esta plataforma garantiza la confiabilidad de los datos, ya que provienen de monitoreos sistemáticos, anuarios estadísticos y programas oficiales de seguimiento de biodiversidad y actividad pesquera en México, lo que permite su uso para análisis consistentes y alineados con el ODS 14.
+
+Para más información revisar la carperta de datos para metadatos individuales.
 
 ---
 ## Instrucciones de Ejecución
