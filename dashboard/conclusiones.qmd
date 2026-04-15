@@ -2,3 +2,6 @@
 title: "Conclusiones"
 ---
 
+```{python}
+#| label: setup
+#| include: false
