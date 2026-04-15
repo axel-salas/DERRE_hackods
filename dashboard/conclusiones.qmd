@@ -87,7 +87,6 @@ fig.update_xaxes(
 )
 
 fig.update_yaxes(showgrid=True, gridcolor='lightgray')
-return fig
 ```
 
 ## Row {.tabset}
