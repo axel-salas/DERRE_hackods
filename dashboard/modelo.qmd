@@ -1,5 +1,8 @@
 ---
 title: "Modelo Predictivo"
+format:
+  dashboard:
+    theme: [darkly, custom.scss]
 ---
 
 ```{python}
@@ -402,6 +405,10 @@ El modelo nos permite hacer algo que los datos históricos solos no pueden: expl
 * **Factor de reducción de la presión pesquera (a):** Permite modelar escenarios en los que se modifica la presión pesquera. Simula la implementación de regulaciones o el aumento desmedido de la pesca.
 
 * **Factor de reducción del crecimiento de la flota (f):** Permite modelar escenarios en los que se controla el crecimiento de la flota. Simula la implementación de políticas que limitan la expansión de embarcaciones o el aumento acelerado de la flota.
+
+* **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
+:::
+:::
 
 * **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
 :::
