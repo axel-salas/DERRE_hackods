@@ -27,6 +27,27 @@ body {
   color: #e2e8f0;
 }
 
+
+.hero-card {
+    background: linear-gradient(135deg, #0f1117 0%, #1a1d27 100%) !important;
+    border-left: 5px solid #1DB38A !important;
+    border-radius: 15px;
+}
+
+.card-navigation {
+    transition: transform 0.2s;
+    height: 100%;
+}
+
+.card-navigation:hover {
+    transform: translateY(-5px);
+}
+
+.footer-ods {
+    border-top: 1px solid #2a2d3a;
+    color: #888;
+}
+
 /* ===== TITULOS ===== */
 h1 {
   font-size: 2.5rem;
