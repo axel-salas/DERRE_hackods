@@ -67,16 +67,20 @@ display(crear_fig_lobos_marinos(lobos_marinos))
 ::: {#columna-texto}
 ::: {.callout-note appearance="minimal" icon=false}
 ## El control natural
-En esta parte aparece el personaje más importante de esta historia, y lo vemos claramente: no por lo que muestra, sino por lo que no debería estar mostrando. Los efectos de la pesca sobre el ecosistema se hacen evidentes cuando vemos los elementos protegidos.
+Para poder dar una conclusion debemos hablar primero sobre uno de los personajes más importantes de esta historia, los lobos marinos, y lo vemos claramente: no por lo que muestra, sino por lo que no debería estar mostrando. 
 El lobo marino de California habita en colonias reproductivas en islas del Pacífico mexicano que están bajo protección federal estricta. No hay pesca directa sobre su hábitat. No hay redes que intercepten sus rutas. Si hay un animal que debería estar aislado del efecto de la presión pesquera, es este.
 Eso lo convierte en nuestro grupo control: el indicador que nos permite separar el efecto del clima sobre nuestras especies, del efecto de la pesca.
 La población de lobos marinos ha mostrado recuperación sostenida a lo largo de la serie histórica, con fluctuaciones atribuibles a eventos El Niño pero con una tendencia general al alza. Para 2022-2023, los registros superaron los 7,500 individuos, el máximo histórico de la serie.
-El contraste es la evidencia más poderosa de este análisis. Si nuestro depredador fuera el clima, los lobos marinos también estarían en declive. No lo están. El océano todavía puede sostener vida cuando se le protege de la extracción directa.
+
 
 :::
 
 ::: {.callout-important appearance="minimal" icon=false}
-## s
+## Conclusión: 
+El modelo predice una tendencia preocupante, el escenario inercial (en el que no se hacen regulaciones y la tendencia continúa como lo ha hecho hasta ahora) es muy similar al escenario catastrófico. La tendencia que lleva la población tanto de pelícanos como de ballenas es extremadamente decreciente. Hay datos atípicos que no se alinean con el modelo y mucho ruido en las poblaciones, probablemente por los ciclos migratorios y el clima, sin embargo, la tendencia general es capturada por el modelo y el escenario inercial es devastador. La pregunta es ¿hay algo que se pueda hacer? El modelo como tal responde a esta pregunta a través de la simulación del efecto que políticas de conservación ambiental podrían tener en la población de ballenas y pelícanos. Al reducir el impacto que la flota tiene en la población en un 50% del actual sucede un cambio drástico en la tendencia de la población, hay un régimen de conservación en el modelo, se nos indica que la población podría conservarse en este caso. 
+
+Como evidencia empírica del cambio que podría tener el ecosistema incluimos la población de leones marinos en la Isla de San Esteban como indicadores. El 7 de junio del año 2000 se estableció el Área de Protección de Flora y Fauna “Islas del Golfo de California” (Secretaría de Medio Ambiente y Recursos Naturales [SEMARNAT], 2001). El impacto de esta política de conservación es evidente en la tendencia de los datos de los leones marinos, mostrando que sí es posible obtener un cambio a través de políticas de conservación. Hay que considerar que las zonas pesqueras no pueden tener el mismo tratamiento de conservación que el de una zona nacional protegida, sin embargo, la posibilidad de cambio tiene tanto evidencia matemática como empírica. 
+
 
 :::
 :::
