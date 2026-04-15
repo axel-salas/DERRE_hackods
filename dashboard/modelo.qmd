@@ -2,7 +2,7 @@
 title: "Modelo Predictivo"
 format:
   dashboard:
-    theme: [darkly, custom.scss]
+    orientation: rows
 ---
 
 ```{python}
@@ -301,10 +301,7 @@ def construir_figura(variable='H'):
 
 ## Row
 
-::: {.callout-note appearance="minimal" icon=false}
-## ¿Cómo responderemos a nuestra pregunta?
-
-::: {style="font-size: 1.05em; margin-left: 15px;"}
+::: {.card title="¿Cómo responderemos a nuestra pregunta?"}
 Para comprender no solo qué está ocurriendo, sino también la capacidad de resistencia del ecosistema, utilizamos un modelo dinámico basado en Lotka-Volterra y Ricker. Este tipo de modelos permite describir las interacciones entre especies, tales como: depredador–presa adaptado a este caso.
 
 Definimos dos variables:
@@ -321,12 +318,8 @@ El modelo describe esta interacción y añade ruido para capturar variaciones cl
 
 Aunque el ajuste histórico no es perfecto (como es común en sistemas ecológicos), el objetivo no es predecir exactamente, sino entender tendencias, riesgos y posibles escenarios futuros. Por eso, los resultados se muestran con incertidumbre incluida.
 :::
-:::
 
-::: {.callout-note appearance="minimal" icon=false}
-## Modelo utilizado
-
-::: {style="font-size: 1.05em; margin-left: 15px;"}
+::: {.card title="Modelo utilizado"}
 Antes de proponer soluciones, es necesario entender cómo se relaciona la actividad humana con la biodiversidad en Baja California. Para ello, formulamos el siguiente modelo:
 
 **Evolución de la biodiversidad marina (Presa):**
@@ -337,9 +330,8 @@ $$P_{t+1} = P_t \exp\left(f \left(1 - \frac{P_t}{C}\right)\right) + \varepsilon_
 
 El núcleo de la simulación se basa en un sistema de ecuaciones en diferencias finitas, específicamente una variante discreta inspirada en modelos tipo Ricker acoplados en un sistema depredador–presa.
 :::
-:::
 
-## Row {height="20%"}
+## Row
 
 ```{python}
 #| component: valuebox
@@ -393,10 +385,7 @@ fig_P.show()
 
 ### Column {width="40%"}
 
-::: {.callout-note appearance="minimal" icon=false}
-## ¿Cómo funciona nuestra gráfica?
-
-::: {style="font-size: 1.05em; margin-left: 15px;"}
+::: {.card title="¿Cómo funciona nuestra gráfica?"}
 El modelo nos permite hacer algo que los datos históricos solos no pueden: explorar escenarios de intervención. Los sliders a continuación te permiten ajustar dos parámetros de política pública y un horizonte temporal.
 
 ¿Qué puedes controlar?
@@ -406,5 +395,4 @@ El modelo nos permite hacer algo que los datos históricos solos no pueden: expl
 * **Factor de reducción del crecimiento de la flota (f):** Permite modelar escenarios en los que se controla el crecimiento de la flota. Simula la implementación de políticas que limitan la expansión de embarcaciones o el aumento acelerado de la flota.
 
 * **Año de intervención:** El momento en que comienzan a aplicarse estas políticas. Cada año de retraso tiene consecuencias que el modelo cuantifica.
-:::
 :::
