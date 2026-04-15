@@ -49,6 +49,8 @@ Por otro lado, las poblaciones de pelícanos y ballenas fueron seleccionadas por
 
 De manera complementaria, la ballena gris refleja condiciones ecológicas a mayor escala, ya que su abundancia depende de factores como la disponibilidad de alimento, condiciones oceanográficas y presiones antropogénicas.
 
+Con los datos de lobos marinos pasa algo distinto, ya que utilizaremos estos datos para dar una conclusión y utlizarlos como evidencia de que puede existir un cambio real, ya que dichos datos son de lobos marinos que habitan en una zona protegida.
+
 En conjunto, estos datos permiten analizar la interacción entre actividad económica y biodiversidad, proporcionando evidencia para evaluar si el sistema se mantiene en equilibrio o si presenta señales de deterioro, en línea con los objetivos del ODS 14.
 
 Todos nuestros datos fueron obtenidos a través de la plataforma oficial de la SEMARNAT (https://www.gob.mx/semarnat), la cual concentra información estadística ambiental generada en colaboración con instituciones como CONANP y CONAPESCA.
