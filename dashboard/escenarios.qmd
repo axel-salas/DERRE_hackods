@@ -232,34 +232,6 @@ def hacer_figura(res):
     color_dH = '#1DB38A' if delta_H >= 0 else '#E05C2A'
     color_dP = '#E05C2A' if delta_P >= 0 else '#1DB38A'
 
-    # Anotación panel H — recuadro parámetros
-    fig.add_annotation(
-        xref='paper', yref='paper',
-        x=0.99, y=0.995,
-        xanchor='right', yanchor='top',
-        text=(
-            f"<b>Parámetros del escenario</b><br>"
-            f"────────────────────────<br>"
-            f"<b>r = {R_M}</b>  &nbsp; Tasa crecimiento biodiversidad<br>"
-            f"<b>a = {A_M * fa:.4f}</b>  &nbsp; Presión pesquera sobre biodiversidad<br>"
-            f"<span style='font-size:10px;color:#888;'>&nbsp;&nbsp;&nbsp;"
-            f"a base ({A_M}) × factor {fa:.0%}</span><br>"
-            f"<b>f = {F_M * ff:.5f}</b>  &nbsp; Crecimiento de la flota<br>"
-            f"<span style='font-size:10px;color:#888;'>&nbsp;&nbsp;&nbsp;"
-            f"f base ({F_M}) × factor {ff:.0%}</span><br>"
-            f"<b>Año intervención: {yr}</b><br>"
-            f"────────────────────────<br>"
-            f"σH = {SH_M}  ·  σP = {SP_M}  &nbsp; (ruido proceso)<br>"
-            f"N = {N_SIMS} simulaciones Monte Carlo"
-        ),
-        showarrow=False,
-        font=dict(size=10, color=TX, family='monospace'),
-        bgcolor='rgba(26,29,39,0.92)',
-        bordercolor=col['H'],
-        borderwidth=1.5,
-        borderpad=10,
-        align='left',
-    )
 
     # Anotación panel H — métricas finales
     fig.add_annotation(
@@ -360,32 +332,9 @@ def hacer_figura(res):
 
 # ── 5. GENERAR Y EXPORTAR ─────────────────────────────────────────────────────
 
-nombres_archivo = [
-    'escenario_1_inercial.html',
-    'escenario_2_conservacion.html',
-    'escenario_3_catastrofico.html',
-]
-
 figs = []
-for res, archivo in zip(resultados, nombres_archivo):
-    print(f"Construyendo figura: {res['nombre']}...")
-    fig = hacer_figura(res)
-    figs.append(fig)
-    fig.write_html(
-        archivo,
-        include_plotlyjs='cdn',
-        full_html=True,
-        config={
-            'displayModeBar': True,
-            'scrollZoom': False,
-            'modeBarButtonsToRemove': ['lasso2d', 'select2d'],
-            'toImageButtonOptions': {
-                'format': 'png', 'width': 1400, 'height': 750,
-                'filename': archivo.replace('.html', '')
-            },
-        }
-    )
-    print(f"  → Exportado: {archivo}")
+for res in resultados:
+    figs.append(hacer_figura(res))
 
 fig_inercial     = figs[0]
 fig_conservacion = figs[1]
@@ -394,7 +343,7 @@ fig_catastrofico = figs[2]
 #  Escenarios a futuro
 ## Row {.tabset}
 
-###  Escenario Inercial
+###  Escenario 1 Inercial: El mar que seguimos ignorando
 
 :::: {layout="[70, 30]"}
 
@@ -408,15 +357,17 @@ display(figs[0])
 ::: {#col-texto-inercial}
 ::: {.callout-note appearance="minimal" icon=false}
 ## 01 — Escenario inercial
-Sin intervención, el índice H continúa su declive hacia valores cercanos a cero en el horizonte 2035-2040. La flota sigue creciendo por inercia económica. 
 
-Las capturas se mantienen artificialmente altas mientras quedan recursos, luego colapsan. Este es el escenario del punto de no retorno.
+El Golfo de California no colapsó de golpe. Lo hicimos lentamente, temporada tras temporada, con cada embarcación adicional que salió al agua y cada tonelada extra que subió a cubierta. Los datos nos dicen que entre 1999 y 2024 ya ocurrió lo más difícil de revertir: la biodiversidad marina pasó de niveles moderados a oscilar peligrosamente cerca de cero, mientras la flota pesquera creció de forma casi ininterrumpida.
+Este primer escenario no supone ningún cambio. Los parámetros son exactamente los que el modelo recuperó de los datos reales: una tasa de depredación a = 2.045 que supera con creces la capacidad de recuperación natural de las presas, y una flota que sigue expandiéndose con f = 0.0472 año tras año. La "intervención" de 2025 es solo nominal ( comenzamos a contar desde hoy), pero no cambiamos nada.
+Lo que proyecta el modelo es sobrio y sin dramatismo innecesario: H se estabiliza en torno a 0.10–0.15, una fracción de sus máximos históricos. No hay colapso abrupto porque la biodiversidad tiene mecanismos de resiliencia, pero tampoco hay recuperación. El sistema queda atrapado en un equilibrio degradado del que es muy difícil salir sin intervención externa. La flota, por su parte, converge hacia su capacidad de carga, no porque haya regulación, sino porque eventualmente el recurso ya no alcanza para sostener más crecimiento.
+Este es el escenario del "business as usual". No es el peor resultado posible, pero sí el más probable si no hacemos nada. Y en ecología marina, una población que se mantiene crónicamente baja es una población vulnerable a cualquier perturbación adicional como El Niño, una marea roja, una temporada de pesca especialmente agresiva, lo que sí podría empujarla al colapso definitivo.
 :::
 :::
 
 ::::
 
-###  Escenario Moderado
+###  Escenario 2 Conservación: La ventana que todavía existe
 
 :::: {layout="[70, 30]"}
 
@@ -430,15 +381,15 @@ display(figs[1])
 ::: {#col-texto-moderado}
 ::: {.callout-note appearance="minimal" icon=false}
 ## 02 — Escenario moderado
-Una reducción del 50-60% en presión pesquera y crecimiento de flota, iniciada antes de 2030, permite que H se estabilice en torno a valores bajos pero positivos. 
-
-El ecosistema no se recupera a sus niveles históricos, pero deja de colapsar. Es el escenario de la gestión del daño.
-:::
+En 2030, después de cinco años de debate y negociación, el gobiernos de México implementó un acuerdo regional de manejo pesquero. Las vedas se amplían, las licencias de nuevas embarcaciones se congelan, y el esfuerzo pesquero total se reduce a la mitad. No es el cierre total de la pesca — es una reducción del 50% en la presión sobre el ecosistema (a × 0.5 = 1.0225) y un freno equivalente al crecimiento de la flota (f × 0.5 = 0.0236).
+El modelo muestra algo que vale la pena detenerse a leer con cuidado: la biodiversidad responde. No de forma espectacular ni inmediata, pero sí de forma sostenida. A partir de 2032, la trayectoria mediana de H se separa visiblemente del escenario inercial y se mantiene por encima de él durante las siguientes décadas. La diferencia al final del período de proyección ronda el +70% respecto al escenario inercial — lo que significa que una política de conservación implementada hoy duplica aproximadamente el nivel de biodiversidad que tendremos a finales de siglo.
+¿Por qué funciona reducir a más que reducir f? Porque el parámetro a = 2.045 es el motor principal de la depresión ecológica. Cada unidad de flota activa ejerce una presión enorme sobre las presas, los cuales dependen de cadenas tróficas que esa presión interrumpe. Frenar el crecimiento de la flota ayuda, pero reducir su intensidad operativa es lo que realmente le da espacio al ecosistema para respirar.
+Este escenario no promete un regreso al máximo histórico de 2012. Lo que promete es algo más valioso en política pública: una trayectoria estable y ascendente en lugar de una meseta de deterioro. Y eso, en un sistema ecológico tan complejo como en Baja California, es la diferencia entre un recurso que se gestiona y uno que simplemente se agota.
 :::
 
 ::::
 
-###  Conservación Activa
+###  Escenario 3 — Catastrófico: Lo que pasa si seguimos acelerando
 
 :::: {layout="[70, 30]"}
 
@@ -453,17 +404,13 @@ display(figs[2])
 ::: {#col-texto-activa}
 ::: {.callout-note appearance="minimal" icon=false}
 ## 03 — Conservación activa
-Reducciones del 70-90% en ambos parámetros, iniciadas cuanto antes, producen una trayectoria de recuperación lenta pero sostenida. 
-
-H muestra una tendencia positiva hacia 2040. Este es el único escenario en que la respuesta a la pregunta inicial es: **sí, puede recuperarse**.
+Este escenario no es una advertencia abstracta. Es la predicción directa de las tendencias más preocupantes que ya se observan en los datos: la flota pesquera de Baja California creció sostenidamente en la última década, la captura por embarcación cayó, y aun así el número de barcos siguió aumentando. Si esa dinámica se intensifica es decir, si la presión pesquera crece un 40% adicional sobre sus niveles actuales (a × 1.4 = 2.863) y la flota acelera su expansión al mismo ritmo (f × 1.4 = 0.0661) a partir hoy, el modelo nos dice lo que ocurre.
+La biodiversidad no colapsa a cero en una sola temporada. Lo que ocurre es más intrigante: la biodiversidad marina cae por debajo del escenario inercial de forma persistente, oscilando en niveles de 0.05–0.08, lo que significa peligro. A esos niveles, una población no está técnicamente extinta, pero su capacidad reproductiva está tan comprometida que cualquier perturbación adicional puede empujarla fuera del rango de recuperación. 
+La flota, paradójicamente, tampoco gana. Crecer un 40% en esfuerzo pesquero cuando el recurso ya está deprimido no produce más captura sino que produce más embarcaciones persiguiendo menos peces. El modelo lo refleja: Las flotas pesqueras suben inicialmente y luego se estabilizan en niveles similares al escenario inercial, pero con una biodiversidad marina mucho más dañada como costo de ese crecimiento. 
+Lo que este escenario le pregunta al tomador de decisiones no es técnico sino político: ¿cuánto vale hoy un pelícano que no anida o una ballena que no regresa? El modelo no puede responder esa pregunta. Pero sí puede mostrar que el costo de no responderla se acumula, año tras año, en una curva que baja más rápido de lo que cualquier regulación futura podrá revertir.
 :::
 
-::: {.callout-warning appearance="minimal" icon=false}
-## 📋 Recomendaciones
-- Implementar cuotas de captura dinámicas basadas en el índice H.
-- Establecer zonas de veda total en áreas de anidación críticas detectadas.
-- Priorizar la investigación de resiliencia climática ante eventos de El Niño.
-:::
+
 :::
 
 ::::
