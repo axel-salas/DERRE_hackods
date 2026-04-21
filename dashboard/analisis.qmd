@@ -117,17 +117,12 @@ def crear_fig_embarcaciones(df):
     fig.update_yaxes(title="Total de Embarcaciones", tickformat=",", showgrid=True, gridcolor='rgba(200, 200, 200, 0.2)')
     return fig
 ```
-
-#  Análisis Exploratorio
-
-## Row {.tabset}
-
-###  Ballenas
+# Ballenas
 
 :::: {layout="[70, 30]"}
 
 ::: {#columna-grafica}
-```{python}
+```python
 #| fig-responsive: true
 display(crear_fig_ballenas(ballenas))
 ```
@@ -147,12 +142,13 @@ Los años sombreados en las gráficas corresponden a eventos El Niño; perturbac
 
 ::::
 
-###  Pelícanos
+
+# Pelícanos
 
 :::: {layout="[70, 30]"}
 
 ::: {#columna-grafica-pelicanos}
-```{python}
+```python
 #| fig-responsive: true
 display(crear_fig_pelicanos(pelicanos))
 ```
@@ -173,12 +169,12 @@ El pelícano pardo compite con la flota pesquera por el mismo recurso. Donde la 
 ::::
 
 
-###  Producción y Flota
+# Producción y Flota
 
 :::: {layout="[70, 30]"}
 
 ::: {#columna-grafica-flota}
-```{python}
+```python
 #| fig-responsive: true
 display(crear_fig_pesca(produccion_pesquera))
 display(crear_fig_embarcaciones(embarcaciones))
@@ -195,8 +191,6 @@ Esta es la paradoja central: a mayor extracción, menor biodiversidad silvestre 
 
 :::
 
-
 :::
 
-::::
 ::::
