@@ -340,15 +340,13 @@ fig_inercial     = figs[0]
 fig_conservacion = figs[1]
 fig_catastrofico = figs[2]
 ```
-#  Escenarios a futuro
-## Row {.tabset}
 
-###  Escenario 1 Inercial: El mar que seguimos ignorando
+# Escenario 1 Inercial: El mar que seguimos ignorando
 
 :::: {layout="[70, 30]"}
 
 ::: {#col-grafica-inercial}
-```{python}
+```python
 #| fig-responsive: true
 display(figs[0])
 ```
@@ -367,12 +365,12 @@ Este es el escenario del "business as usual". No es el peor resultado posible, p
 
 ::::
 
-###  Escenario 2 Conservación: La ventana que todavía existe
+# Escenario 2 Conservación: La ventana que todavía existe
 
 :::: {layout="[70, 30]"}
 
 ::: {#col-grafica-moderado}
-```{python}
+```python
 #| fig-responsive: true
 display(figs[1])
 ```
@@ -390,12 +388,12 @@ Este escenario no promete un regreso al máximo histórico de 2012. Lo que prome
 
 ::::
 
-###  Escenario 3 — Catastrófico: Lo que pasa si seguimos acelerando
+# Escenario 3 Catastrófico: Lo que pasa si seguimos acelerando
 
 :::: {layout="[70, 30]"}
 
 ::: {#col-grafica-activa}
-```{python}
+```python
 #| fig-responsive: true
 # Nota: Aquí usamos la figura del escenario 3 de tu código
 display(figs[2]) 
@@ -410,7 +408,6 @@ La biodiversidad no colapsa a cero en una sola temporada. Lo que ocurre es más 
 La flota, paradójicamente, tampoco gana. Crecer un 40% en esfuerzo pesquero cuando el recurso ya está deprimido no produce más captura sino que produce más embarcaciones persiguiendo menos peces. El modelo lo refleja: Las flotas pesqueras suben inicialmente y luego se estabilizan en niveles similares al escenario inercial, pero con una biodiversidad marina mucho más dañada como costo de ese crecimiento. 
 Lo que este escenario le pregunta al tomador de decisiones no es técnico sino político: ¿cuánto vale hoy un pelícano que no anida o una ballena que no regresa? El modelo no puede responder esa pregunta. Pero sí puede mostrar que el costo de no responderla se acumula, año tras año, en una curva que baja más rápido de lo que cualquier regulación futura podrá revertir.
 :::
-
 
 :::
 
