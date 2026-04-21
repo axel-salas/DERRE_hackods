@@ -346,7 +346,7 @@ fig_catastrofico = figs[2]
 :::: {layout="[70, 30]"}
 
 ::: {#col-grafica-inercial}
-```python
+```{python}
 #| fig-responsive: true
 display(figs[0])
 ```
@@ -370,7 +370,7 @@ Este es el escenario del "business as usual". No es el peor resultado posible, p
 :::: {layout="[70, 30]"}
 
 ::: {#col-grafica-moderado}
-```python
+```{python}
 #| fig-responsive: true
 display(figs[1])
 ```
@@ -393,7 +393,7 @@ Este escenario no promete un regreso al máximo histórico de 2012. Lo que prome
 :::: {layout="[70, 30]"}
 
 ::: {#col-grafica-activa}
-```python
+```{python}
 #| fig-responsive: true
 # Nota: Aquí usamos la figura del escenario 3 de tu código
 display(figs[2]) 
