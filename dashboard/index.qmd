@@ -2169,56 +2169,20 @@ Mientras las ballenas y pelícanos sufren colapsos, los lobos marinos muestran u
 :::
 :::
 
-### Column {width="100%"}
+::: {.callout-important appearance="minimal" icon=false}
+## Conclusión crítica
 
-::: {.card}
-::: {.card-body}
+La evidencia es doble:
 
-## Conclusiones Críticas 
+1. **Matemática:** El modelo presa vs. depredador predice que reducir el impacto ambiental de la industria pesquera al 50% desde el 2030 estabilizaría el bienestar ecológico y el modelo de distribución de las ballenas predice que reducir el impacto ambiental del 2030 alrededor de la Laguna Ojo de Liebre y San Ignacio a un 30% estabilizaría la población de la ballena gris alrededor de la zona. 
+2. **Empírica:** El éxito de los lobos marinos tras la creación del Área de Protección *Islas del Golfo de California* en el año 2000 confirma que las políticas de conservación **sí funcionan en la vida real**.
 
-::: {.conclusiones-wrapper}
+El escenario inercial es devastador, pero la posibilidad de cambio tiene tanto respaldo científico como evidencia en campo. La evidencia empírica nos indica que es posible recuperar la ecología, especialmente mediante la implementación de área nacionales protegidas, como lo es el hábitat de los lobos marinos. Sin embargo, especies migratorias o que transitan distintas zonas de las costas bajacalifornianas, justo como lo son las ballenas grises, necesitan políticas que cuiden de ellas mientras migran y potencialmente entren a zonas de actividad pesquera intensiva. Políticas como hacer cumplir técnicas de pesca poco invasivas o respetar rutas migratorias importantes es crucial para la supervivencia de estas especies. La verdad sí es que actualmente nos encontramos en una tendencia alarmante, la ecología de la costa de Baja California cae en picada. Se necesitan reducciones dramáticas para ver mejoras, los modelos predicen que una reducción al  50% y 30% de la presión antrópica es de suma importancia para tan solo conservar lo que queda. No es fácil, pero las soluciones son evidentes, al menos en las costas de Baja California. 
 
-::: {.concl-evidencia}
-### 📊 Evidencia del Modelo
-
-La ciencia respalda la necesidad de una intervención inmediata bajo dos pilares:
-
-1.  **Matemática:** Reducir el impacto pesquero al **50% para 2030** estabilizaría el ecosistema. En zonas críticas como Laguna Ojo de Liebre, una reducción del **30%** es vital para la ballena gris.
-2.  **Empírica:** El éxito de los lobos marinos en el *Golfo de California* (año 2000) demuestra que **las políticas de conservación sí funcionan**.
-:::
-
-::: {.concl-desafio}
-### El Desafío: Especies Migratorias
-
-Aunque las Áreas Naturales Protegidas son efectivas para especies residentes, las **especies migratorias como la ballena gris** requieren una protección dinámica. No basta con proteger su destino; es crucial blindar sus rutas frente a la pesca intensiva mediante técnicas de bajo impacto.
-
-> **Advertencia:** La ecología de Baja California está en una tendencia alarmante. Se requieren reducciones de presión antrópica de entre el 30% y 50% solo para **conservar lo que aún queda**.
-:::
-
-::: {.concl-hoja-ruta}
-### 🌱 Hoja de Ruta para el 2030
-
-* **Expansión:** Implementación de nuevas Áreas Nacionales Protegidas.
-* **Regulación:** Aplicación estricta de técnicas de pesca de bajo impacto.
-* **Blindaje:** Protección efectiva de rutas migratorias críticas.
-* **Urgencia:** Cambio progresivo pero inmediato para alcanzar las metas del 2030.
-:::
-
-::: {.concl-divider}
-:::
-
-::: {.concl-resumen}
-### 📌 Resumen Ejecutivo
-
-* **Meta Crítica:** Es necesario reducir el impacto humano un **30-50%** para evitar el colapso.
-* **Prueba de Éxito:** La recuperación del lobo marino confirma que la gestión ambiental genera resultados reales.
-* **Protección Dinámica:** Las ballenas necesitan leyes que las sigan en su ruta, no solo en sus santuarios.
-* **Acción Inmediata:** La solución técnica existe; el reto es su implementación política y social antes de 2030.
-:::
-
-:::
-
-:::
+Implementación de áreas nacionales protegidas.
+Pesca de bajo impacto ecológico. 
+Cuidado de rutas migratorias importantes.
+Un cambio inmediato y progresivo para alcanzar la reducción de impacto ambiental necesaria para el 2030.
 :::
 
 ## Row {height="auto" .divider-row}
