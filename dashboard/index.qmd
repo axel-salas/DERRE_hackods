@@ -386,7 +386,7 @@ def crear_fig_ballenas(df):
         xaxis_title="Temporada (Año)",
         yaxis_title="Individuos Registrados",
         hovermode="x unified",
-        legend=dict(orientation="h", y=1.05, yanchor="bottom", x=1, xanchor="right"),
+        showlegend=False,
         margin=dict(l=60, r=30, t=100, b=60)
     )
     fig.update_xaxes(tickformat=".0f", tickangle=0, dtick=4, showgrid=False,
@@ -433,7 +433,7 @@ def crear_fig_pelicanos(df):
             y=0.96, x=0.02, xanchor='left', yanchor='top'
         ),
         xaxis_title="Temporada (Año)",
-        legend=dict(orientation="h", y=1.05, yanchor="bottom", x=1, xanchor="right"),
+        showlegend=False,
         margin=dict(l=60, r=30, t=100, b=60)
     )
     fig.update_xaxes(tickangle=0, dtick=3, showgrid=False,
@@ -922,14 +922,7 @@ def construir_figura(variable='H'):
             linecolor=C['border'],
             rangemode='nonnegative',
         ),
-        legend=dict(
-            bgcolor=C['ann_bg'],
-            bordercolor=C['border'],
-            borderwidth=1,
-            font=dict(color=C['text'], size=11, family=C['ff_body']),
-            orientation='h',
-            y=1.09, x=0.0,
-        ),
+        showlegend=False,
         margin=dict(t=100, b=260, l=65, r=42),
         sliders=final_sliders,
         annotations=[ann_resultado, ann_futuros],
@@ -1283,14 +1276,7 @@ def construir_mapa_ballena(alpha1, datos, ano_corte=2030):
         paper_bgcolor=C['bg'],
         plot_bgcolor=C['ax'],
         font=dict(color=C['text'], family=C['ff_body']),
-        legend=dict(
-            bgcolor=C['ann_bg'],
-            bordercolor=C['border'],
-            borderwidth=1,
-            font=dict(color=C['text'], size=11, family=C['ff_body']),
-            x=0.53, y=0.99,
-            xanchor='left', yanchor='top',
-        ),
+        showlegend=False,
         height=580,
         margin=dict(l=10, r=10, t=60, b=220),
     )
@@ -1885,14 +1871,7 @@ def hacer_figura(res):
         height=700,
         margin=dict(t=110, b=55, l=72, r=22),
         hovermode='x unified',
-        legend=dict(
-            orientation='h',
-            x=0.0, y=-0.07,
-            bgcolor='rgba(4,30,53,0.88)',
-            bordercolor='rgba(93,214,240,0.22)',
-            borderwidth=1,
-            font=dict(size=10, color=TX),
-        ),
+        showlegend=False,
     )
 
     # Ejes X
@@ -2101,12 +2080,7 @@ def crear_fig_lobos_marinos(df):
         paper_bgcolor=BG_PLOT,
         font=dict(color=TX_PLOT, family='DM Sans, system-ui, sans-serif'),
         hovermode='x unified',
-        legend=dict(
-            orientation='h', y=1.05, yanchor='bottom', x=1, xanchor='right',
-            bgcolor='rgba(4,30,53,0.82)',
-            bordercolor='rgba(93,214,240,0.22)', borderwidth=1,
-            font=dict(color=TX_PLOT)
-        ),
+        showlegend=False,
         margin=dict(l=60, r=30, t=105, b=60),
         height=None,
         autosize=True
