@@ -354,7 +354,7 @@ def crear_fig_ballenas(df):
     fig.add_trace(go.Scatter(
         x=[None], y=[None], mode='markers',
         marker=dict(symbol="square", size=15, color="rgba(244,162,97,0.3)"),
-        name='Fenómeno de El Niño (Calentamiento)', showlegend=True
+        name='Fenómeno de El Niño (Calentamiento)', showlegend=False
     ))
 
     # Serie principal
@@ -402,13 +402,13 @@ def crear_fig_pelicanos(df):
     fig.add_trace(go.Scatter(
         x=[None], y=[None], mode='markers',
         marker=dict(symbol="square", size=15, color="rgba(244,162,97,0.3)"),
-        name='Fenómeno de El Niño (Calentamiento)', showlegend=True
+        name='Fenómeno de El Niño (Calentamiento)', showlegend=False
     ))
 
     fig.add_trace(go.Scatter(
         x=[None], y=[None], mode='markers',
         marker=dict(symbol="square", size=15, color="rgba(244,162,97,0.3)"),
-        name='Fenómeno de El Niño', showlegend=True
+        name='Fenómeno de El Niño', showlegend=False
     ))
 
     fig.add_trace(go.Scatter(
@@ -449,7 +449,7 @@ def crear_fig_pesca(df):
     fig.add_trace(go.Scatter(
         x=[None], y=[None], mode='markers',
         marker=dict(symbol="square", size=15, color="rgba(244,162,97,0.3)"),
-        name='Fenómeno de El Niño (Calentamiento)', showlegend=True
+        name='Fenómeno de El Niño (Calentamiento)', showlegend=False
     ))
     fig.add_trace(go.Scatter(
         x=df['año'], y=df['toneladas_pescadas'],
@@ -489,7 +489,7 @@ def crear_fig_embarcaciones(df):
     fig.add_trace(go.Scatter(
         x=[None], y=[None], mode='markers',
         marker=dict(symbol="square", size=15, color="rgba(244,162,97,0.3)"),
-        name='Fenómeno de El Niño (Calentamiento)', showlegend=True
+        name='Fenómeno de El Niño (Calentamiento)', showlegend=False
     ))
 
     fig.add_trace(go.Scatter(
@@ -2059,7 +2059,7 @@ def crear_fig_lobos_marinos(df):
     fig.add_trace(go.Scatter(
         x=[None], y=[None], mode='markers',
         marker=dict(symbol='square', size=15, color=C_NINO_FILL),
-        name='Fenómeno de El Niño', showlegend=True
+        name='Fenómeno de El Niño', showlegend=False
     ))
 
     # Serie principal
