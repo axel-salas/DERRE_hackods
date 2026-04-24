@@ -194,7 +194,7 @@ Datos fuente
 :::
 
 ::: {.seccion-desc}
-Para acceder a los metadatos y los archivos originales [acceder a:]!(../datos/)
+Para acceder a los metadatos y los archivos originales ![acceder a:](../datos/)
 :::
 
 :::
@@ -1535,7 +1535,7 @@ Este parámetro concentra la presión antrópica total en la laguna: actividad p
 | > 0.033 | Riesgo de declive |
 
 **Modelo calibrado** con datos de censo 1995–2023 mediante inferencia bayesiana (MCMC). El parámetro recuperado fue $\alpha_1 = 0.033$. El escenario inercial de la siguiente figura es el proyectado para los datos actuales y las condiciones de conservación actuales.
-Para mas información sobre el modelo acceda [aquí]!(../scripts/REPORTE_FINAL.pdf)
+Para mas información sobre el modelo acceda ![aquí](../scripts/REPORTE_FINAL.pdf)
 
 :::
 
@@ -2172,6 +2172,6 @@ Información Adicional y Créditos
 **Dashboard ODS 14: Vida Submarina** Desarrollado con [Quarto](https://quarto.org)
 Datos recopilados por el equipo DERRE
 
-[Repositorio de GitHub]!(../) | [Metodología]!(../scripts/) | [Contacto y Referencias]!(../README.md)
+![Repositorio de GitHub](../) | ![Metodología](../scripts/) | ![Contacto y Referencias](../README.md)
 
 :::
