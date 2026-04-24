@@ -1580,7 +1580,7 @@ display(construir_figura_ballena())
 
 ## Row {height="900px" .tabset}
 
-### Escenario 1 — Inercial
+### Escenario 1 — Catastrófico
 
 ```{python}
 #| label: setup3
@@ -1708,13 +1708,13 @@ def monte_carlo(año_interv, factor_a, factor_f, seed=42):
 
 
 CFG = [
-    ('Escenario 1 — Inercial',
+    ('Escenario 2 — Inercial',
      'Parámetros actuales sin cambio de política',
      1.0, 1.0, 2025, 'inercial'),
-    ('Escenario 2 — Conservación',
+    ('Escenario 3 — Conservación',
      'Regulación pesquera: −50 % presión · −50 % crecimiento de flota',
      0.5, 0.5, 2030, 'conservacion'),
-    ('Escenario 3 — Catastrófico',
+    ('Escenario 1 — Catastrófico',
      'Expansión no regulada: +40 % presión · +40 % crecimiento de flota',
      1.4, 1.4, 2025, 'catastrofico'),
 ]
@@ -1940,7 +1940,22 @@ figs = [hacer_figura(res) for res in resultados]
 ```
 
 ::: {.callout-important appearance="minimal" icon=false}
-## 01 — El mar que seguimos ignorando
+## 01 — Lo que pasa si seguimos acelerando
+
+Este escenario no es una advertencia abstracta: es la predicción directa de tendencias ya observadas. Si la dinámica actual se intensifica el modelo muestra una biodiversidad marina que cae por debajo del escenario inercial de forma persistente, oscilando en niveles de **0.05–0.08**. A esos niveles, la capacidad reproductiva está tan comprometida que cualquier perturbación adicional puede empujar la población fuera del rango de recuperación si no es que ya estamos dentro de ese rango.
+
+Llegar aquí sería producto de malas políticas ecológicas y una indiferencia absoluta a la problemática ambiental que ya está sucediendo hoy en todo México. Como ciudadana o ciudadano es complicado tener una acción de alto impacto, pero podemos exigir a nuestros políticos por cambios y manifestar nuestra preocupación y la importancia de la problemática. 
+:::
+
+```{python}
+#| padding: 0
+display(figs[2])
+```
+
+### Escenario 2 — Inercial
+
+::: {.callout-important appearance="minimal" icon=false}
+## 02 — El mar que seguimos ignorando
 
 El Golfo de California no colapsó de golpe. Lo hicimos lentamente, temporada tras temporada, con cada embarcación adicional no regulada que salió al agua y cada tonelada extra que subió a cubierta. Los datos muestran que entre 1999 y 2024 ya ocurrió lo más difícil de revertir: la biodiversidad marina pasó de niveles moderados a oscilar peligrosamente cerca de cero, mientras la flota pesquera creció de forma casi ininterrumpida.
 
@@ -1952,10 +1967,10 @@ Este escenario no supone ningún cambio. Los parámetros son exactamente los que
 display(figs[0])
 ```
 
-### Escenario 2 — Conservación
+### Escenario 3 — Conservacion
 
 ::: {.callout-important appearance="minimal" icon=false}
-## 02 — La ventana que todavía existe
+## 03 — La ventana que todavía existe
 
 En 2030, tras cinco años de debate y negociación, el gobierno de México implementa un acuerdo regional de manejo pesquero. El esfuerzo pesquero total se reduce a la mitad: una reducción del 50% en la presión sobre el ecosistema y un freno equivalente al crecimiento de la flota.
 
@@ -1965,21 +1980,6 @@ El modelo muestra algo que vale la pena leer con cuidado: la biodiversidad respo
 ```{python}
 #| padding: 0
 display(figs[1])
-```
-
-### Escenario 3 — Catastrófico
-
-::: {.callout-important appearance="minimal" icon=false}
-## 03 — Lo que pasa si seguimos acelerando
-
-Este escenario no es una advertencia abstracta: es la predicción directa de tendencias ya observadas. Si la dinámica actual se intensifica el modelo muestra una biodiversidad marina que cae por debajo del escenario inercial de forma persistente, oscilando en niveles de **0.05–0.08**. A esos niveles, la capacidad reproductiva está tan comprometida que cualquier perturbación adicional puede empujar la población fuera del rango de recuperación si no es que ya estamos dentro de ese rango.
-
-Llegar aquí sería producto de malas políticas ecológicas y una indiferencia absoluta a la problemática ambiental que ya está sucediendo hoy en todo México. Como ciudadana o ciudadano es complicado tener una acción de alto impacto, pero podemos exigir a nuestros políticos por cambios y manifestar nuestra preocupación y la importancia de la problemática. 
-:::
-
-```{python}
-#| padding: 0
-display(figs[2])
 ```
 
 ## Row {height="auto" .divider-row}
