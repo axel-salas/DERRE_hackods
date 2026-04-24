@@ -10,6 +10,6 @@ dependencies = [
     "nbformat>=5.10.4",
     "pandas>=3.0.2",
     "plotly>=6.7.0",
-    "quarto>=0.1.0",
+    "quarto-cli>=1.9.37",
     "spicy>=0.16.0",
 ]
