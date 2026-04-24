@@ -1,0 +1,15 @@
+[project]
+name = "derre-hackods"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.9",
+    "nbformat>=5.10.4",
+    "pandas>=3.0.2",
+    "plotly>=6.7.0",
+    "quarto>=0.1.0",
+    "spicy>=0.16.0",
+]
